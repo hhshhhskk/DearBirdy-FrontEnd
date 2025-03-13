@@ -1,10 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { EventSourcePolyfill } from "event-source-polyfill";
-import { test_token } from "@/lib/token";
 
 const NotificationComponent = () => {
-  const token = test_token;
   const EventSource = EventSourcePolyfill;
 
   const [notifications, setNotifications] = useState<string[]>([]);
@@ -15,9 +13,6 @@ const NotificationComponent = () => {
         const eventSource = new EventSource(
           `https://dev.dearbirdy.xyz/api/v1/notification/subscribe`,
           {
-            headers: {
-              access: `Bearer ${token}`,
-            },
             withCredentials: true,
           }
         );

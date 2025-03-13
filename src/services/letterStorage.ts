@@ -1,16 +1,9 @@
 import api from "@/lib/api";
-import { test_token } from "@/lib/token";
-
-const token = test_token;
 
 // 편지 보관함 전체
 export const getLetterAll = async (pageNum: number) => {
   try {
     const response = await api.get(`letter/list/all?pageNumber=${pageNum}`, {
-      headers: {
-        "Content-Type": "application/json",
-        access: `Bearer ${token}`,
-      },
       withCredentials: true,
     });
 
@@ -28,10 +21,6 @@ export const getLetterWait = async (pageNum: number) => {
     const response = await api.get(
       `letter/list/pending?pageNumber=${pageNum}`,
       {
-        headers: {
-          "Content-Type": "application/json",
-          access: `Bearer ${token}`,
-        },
         withCredentials: true,
       }
     );
@@ -48,10 +37,6 @@ export const getLetterSaved = async (pageNum: number) => {
     const response = await api.get(
       `letter/list/archive?pageNumber=${pageNum}`,
       {
-        headers: {
-          "Content-Type": "application/json",
-          access: `Bearer ${token}`,
-        },
         withCredentials: true,
       }
     );
@@ -71,10 +56,6 @@ export const LetterSave = async (letterStatusSeq: number) => {
     const response = await api.get(
       `letter/archive?letterStatusSeq=${letterStatusSeq}`,
       {
-        headers: {
-          "Content-Type": "application/json",
-          access: `Bearer ${token}`,
-        },
         withCredentials: true,
       }
     );
@@ -91,10 +72,6 @@ export const LetterSave = async (letterStatusSeq: number) => {
 export const birdyTip = async () => {
   try {
     const response = await api.get(`birdy/tip`, {
-      headers: {
-        "Content-Type": "application/json",
-        access: `Bearer ${token}`,
-      },
       withCredentials: true,
     });
     // console.log(response.data);

@@ -1,6 +1,6 @@
 "use client";
 import { birdNameMap } from "@/constants/birdNameMap";
-import { birdyTip } from "@/services/userService";
+import { birdyTip } from "@/services/letterStorage";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 

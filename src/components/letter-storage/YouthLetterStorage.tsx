@@ -14,11 +14,11 @@ import {
 } from "@/services/letterStorage";
 import { useBookMarkStore } from "@/store/bookMarkStore";
 import BookMarkIcon from "../Icons/Bookmark_icon";
-import BirdyTip from "./BirdyTip";
 import { Letter } from "@/app/(footershare)/letter-storage/page";
 import { useInView } from "react-intersection-observer";
 import { birdNameMap } from "@/constants/birdNameMap";
 import HomeLetterIcon from "../Icons/Home_letter_icon";
+import BirdyTip from "./BirdyTip";
 
 const queryClient = new QueryClient();
 
