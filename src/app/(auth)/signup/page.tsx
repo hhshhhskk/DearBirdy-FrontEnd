@@ -39,7 +39,7 @@ const SignUp = () => {
   }, [setStep, setTestStep, router]); // ✅ router 추가
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full h-screen px-4">
       {!hideNav && step !== 4 && <SignupNav />}
       {step === 0 && <SignupIntro />}
       {step === 1 && <NicknameStep />}

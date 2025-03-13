@@ -3,40 +3,57 @@
 import HomeMainSenior from "@/components/home/HomeMainSenior";
 import HomeMainYouth from "@/components/home/HomeMainYouth";
 import Header from "@/components/ui/Header";
+import { getUserInfo } from "@/services/homeGetApi";
 
 import React, { useEffect, useState } from "react";
 
+export interface IUserCategory {
+  career: boolean;
+  mental: boolean;
+  relationship: boolean;
+  love: boolean;
+  life: boolean;
+  finance: boolean;
+  housing: boolean;
+  other: boolean;
+}
+
 export interface IUserData {
-  birdName?: string;
-  nickname?: string;
-  quota?: number;
-  roleName?: string;
-  read?: boolean;
+  birdName: string;
+  nickname: string;
+  roleName: "MENTOR" | "MENTEE"; // 역할이 정해져 있다면 리터럴 타입으로 제한 가능
+  userCategory: IUserCategory;
+  quota: number;
+  sendLetter: number;
+  replyLetter: number;
+  read: boolean;
 }
 
 const Home: React.FC = () => {
   const [userData, setUserData] = useState<IUserData | null>(null);
 
   useEffect(() => {
-    const storedData = sessionStorage.getItem("userData");
+    const fetchData = async () => {
+      try {
+        const response = await getUserInfo();
+        sessionStorage.setItem("userInfo", JSON.stringify(response.data));
+        setUserData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-    if (storedData) {
-      const parsedData = JSON.parse(storedData);
-
-      setUserData(parsedData);
-    }
+    fetchData();
   }, []);
 
-  if (!userData) {
-    return <p>로딩 중...</p>;
-  }
+  console.log(userData);
 
   if (!userData) {
-    return <p>사용자 정보를 불러오는 데 실패했습니다.</p>;
+    return;
   }
 
   return (
-    <div className="justify-center items-center">
+    <div className="items-center justify-center">
       <Header userData={userData} />
 
       {userData.roleName === "MENTOR" ? (

@@ -23,10 +23,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${pretendard.variable} box-border font-pretendard max-w-[476px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[800px] mx-auto`}
+        className={`${pretendard.variable} font-pretendard w-full flex justify-center`}
       >
         {/* ✅ React Query Provider 적용 */}
-        <main className="max-w-[476px] h-full">
+        <main className="min-w-[375px] h-full bg-[#f9f8f3]">
           <Providers>{children}</Providers>
         </main>
       </body>

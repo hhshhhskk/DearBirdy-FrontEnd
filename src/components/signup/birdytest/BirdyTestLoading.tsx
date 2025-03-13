@@ -62,11 +62,11 @@ const BirdyTestLoading = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 pt-20 mx-auto">
+    <div className="inset-0 z-50 flex flex-col items-center">
       {/* ✅ InfoBox와 안내 텍스트 - 클릭 전에만 표시 */}
       {!isAnimationClicked && (
         <>
-          <div className="mt-14">
+          <div className="mt-2">
             <InfoBox
               imageSrc="/images/signup/bluebird-3.svg"
               altText="버디테스트 아이콘"
@@ -74,7 +74,7 @@ const BirdyTestLoading = () => {
             />
           </div>
 
-          <p className="text-xl font-bold text-center text-[#292D32] my-8">
+          <p className="text-xl font-bold text-center text-[#292D32]">
             알을 눌러서 버디를 깨워주세요!
           </p>
         </>
@@ -82,7 +82,7 @@ const BirdyTestLoading = () => {
 
       {/* ✅ 애니메이션 컨테이너 */}
       <div
-        className={`w-[242px] cursor-pointer mx-auto 
+        className={` w-[242px] cursor-pointer mt-[50px]
           ${!isAnimationClicked ? "mt-[-.625rem]" : ""} 
           ${
             isAnimationClicked
@@ -111,7 +111,7 @@ const BirdyTestLoading = () => {
 
       {/* ✅ 결과 카드 - 애니메이션 위에 표시 */}
       {showResultCard && (
-        <div className="z-20 absolute inset-0 flex flex-col items-center justify-center">
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center">
           <BirdyResultCard birdType={birdType} />
         </div>
       )}

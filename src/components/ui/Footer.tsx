@@ -37,8 +37,8 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <div className=" flex justify-center max-w-[476px] ">
-      <div className="fixed w-full bottom-0 h-[60px] flex justify-around items-center border-t border-[#F0F1EC] bg-[#F9F8F3] min-w-[375px] max-w-[476px] sm:w-full ">
+    <div className="flex justify-center ">
+      <div className="fixed bottom-0 h-[60px] flex justify-around items-center border-t border-[#F0F1EC] bg-[#F9F8F3] min-w-[375px] ">
         {menuItems.map(({ id, Icon, label }) => (
           <div
             key={id}
@@ -46,6 +46,7 @@ const Footer: React.FC = () => {
             onClick={() => iconClicked(id)}
           >
             <Icon
+              selectedIcon={selectedIcon}
               read={userData?.read}
               fill={selectedIcon === id ? "#292D32" : "#AEAEB2"}
             />

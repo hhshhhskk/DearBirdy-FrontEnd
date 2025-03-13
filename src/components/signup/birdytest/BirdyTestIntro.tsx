@@ -30,7 +30,7 @@ const BirdyTestIntro: React.FC<BirdyTestIntroProps> = ({ onStart }) => {
   }, [setHideNav]);
 
   return (
-    <div className="p-4 mt-24">
+    <div className="p-4">
       {/* InfoBox 컴포넌트 적용 */}
       <InfoBox
         imageSrc="/images/signup/bluebird-2.svg"
@@ -49,7 +49,7 @@ const BirdyTestIntro: React.FC<BirdyTestIntroProps> = ({ onStart }) => {
       </div>
 
       {/* 다음 버튼 */}
-      <div className="absolute bottom-10 flex justify-center">
+      <div className="absolute flex justify-center bottom-10">
         <NextButton text="좋아요!" onClick={onStart} />
       </div>
     </div>

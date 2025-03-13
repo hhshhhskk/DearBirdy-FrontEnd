@@ -1,34 +1,13 @@
 "use client";
 
-import { getLetterHistory } from "@/services/userService";
-import { useEffect, useState } from "react";
 import SettingsMenu from "./settingsMenu";
+import { IUserData } from "@/app/(footershare)/home/page";
 
-export default function LetterHistory() {
-  const [sendLetter, setSendLetter] = useState(0);
-  const [replyLetter, setReplyLetter] = useState(0);
+interface IProps {
+  userData?: IUserData;
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // console.log("🚀 API 호출 시작");
-        const response = await getLetterHistory();
-        // console.log("✅ API 응답 데이터:", response);
-
-        if (response) {
-          setSendLetter(response.data.sendLetter ?? 0);
-          setReplyLetter(response.data.replyLetter ?? 0);
-          // console.log("✅ 상태 업데이트 요청됨");
-        }
-      } catch (error) {
-        console.error("❌ API 호출 중 오류 발생:", error);
-      }
-    };
-    // console.log("🎯 변경된 값 - 보낸 편지:", sendLetter);
-    // console.log("🎯 변경된 값 - 받은 편지:", replyLetter);
-    fetchData();
-  }, [sendLetter, replyLetter]);
-
+const LetterHistory: React.FC<IProps> = ({ userData }) => {
   return (
     <div className="flex flex-col flex-wrap gap-6 ">
       <div>
@@ -40,7 +19,7 @@ export default function LetterHistory() {
             <div className="flex flex-col justify-center items-center px-[20px] py-[5px]">
               <span className="text-[#6B7178] text-[14px]">보낸 편지</span>
               <span className="text-[#6B7178] text-[16px] font-bold mt-[8px]">
-                {sendLetter}
+                {userData?.sendLetter}
               </span>
             </div>
 
@@ -49,7 +28,7 @@ export default function LetterHistory() {
             <div className="flex flex-col items-center px-[20px] py-[5px]">
               <span className="text-[#6B7178] text-[14px]">받은 편지</span>
               <span className="text-[#6B7178] text-[16px] font-bold mt-[6px]">
-                {replyLetter}
+                {userData?.replyLetter}
               </span>
             </div>
           </div>
@@ -62,4 +41,5 @@ export default function LetterHistory() {
       </div>
     </div>
   );
-}
+};
+export default LetterHistory;

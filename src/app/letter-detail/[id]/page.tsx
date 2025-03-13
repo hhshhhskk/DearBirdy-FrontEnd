@@ -121,15 +121,6 @@ const LetterDetailId: React.FC = () => {
     // letter가 변경될 때만 실행
   }, [letter]);
 
-  console.log(
-    "sendUserBirdKey, replyUserBirdKey, replySendUserBirdKey",
-    sendUserBirdKey,
-    replyUserBirdKey,
-    replySendUserBirdKey
-  );
-
-  console.log(setSendUserBirdKey);
-
   // 날짜 형식
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -162,8 +153,6 @@ const LetterDetailId: React.FC = () => {
     sendDate = formatDate(letter?.sendLetter?.creatAt ?? "");
     replyDate = formatDate(letter?.replyLetter?.creatAt ?? "");
   }
-
-  console.log("letter:", letter);
 
   const throwClicked = () => {
     setShowThrowModal(true);

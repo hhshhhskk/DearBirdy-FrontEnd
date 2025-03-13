@@ -16,10 +16,10 @@ const SignupNav = () => {
   };
 
   return (
-    <div className="mt-14 flex items-center relative">
+    <div className="relative flex items-center w-full h-[56px]">
       <LeftArrow
         onClick={handleBack}
-        className="w-6 h-6 absolute cursor-pointer"
+        className="absolute w-6 h-6 cursor-pointer"
         stroke="#292D32"
       />
       <p className="text-base font-bold m-4 leading-6 tracking-[-0.064px] w-full text-center">

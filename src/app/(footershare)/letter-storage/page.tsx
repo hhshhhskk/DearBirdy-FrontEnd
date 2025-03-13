@@ -55,7 +55,7 @@ const LetterStorage: React.FC = () => {
   const [userData, setUserData] = useState<IUserData>();
 
   useEffect(() => {
-    const storedData = sessionStorage.getItem("userData");
+    const storedData = sessionStorage.getItem("userInfo");
 
     if (storedData) {
       const parsedData = JSON.parse(storedData);

@@ -4,7 +4,7 @@ import api from "../lib/api";
 import { useAuthStore } from "@/store/authStore";
 
 export const getAccessToken = async (code: string) => {
-  // console.log("✅ 백엔드 요청 시작, code 값:", code);
+  console.log("✅ 백엔드 요청 시작, code 값:", code);
 
   try {
     const response = await api.get(`/auth/kakao?code=${code}`);
@@ -56,7 +56,7 @@ export const postAdditionalInfo = async (userData: {
     other: boolean;
   };
 }) => {
-  // console.log("✅ 추가 정보 등록 API 호출");
+  console.log("✅ 추가 정보 등록 API 호출");
 
   try {
     const accessToken = useAuthStore.getState().accessToken;
@@ -70,9 +70,9 @@ export const postAdditionalInfo = async (userData: {
       },
     });
 
-    // console.log("✅ 추가 정보 등록 성공:", response.data);
+    console.log("✅ 추가 정보 등록 성공:", response.data);
     // 회원가입시 user기본정보 담기
-    sessionStorage.setItem("userData", JSON.stringify(response.data.data));
+    sessionStorage.setItem("userData", JSON.stringify(response.data));
 
     return response.data;
   } catch (error) {

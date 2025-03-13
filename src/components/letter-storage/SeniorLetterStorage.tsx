@@ -84,7 +84,7 @@ const SeniorLetterStorage: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="mb-[60px]">
-        <header className="fixed top-0 w-[343px] flex gap-1 h-[115px] py-[11px] items-end bg-[#F9F8F3]">
+        <header className="fixed top-0 flex gap-1 h-[115px] py-[11px] items-end bg-[#F9F8F3]">
           {category.map((title, idx) => (
             <span
               key={idx}

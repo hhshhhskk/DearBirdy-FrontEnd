@@ -27,14 +27,14 @@ const BirdyTestStep = ({ step, onAnswer }: BirdyTestStepProps) => {
   };
 
   return (
-    <div className="p-4">
+    <div className="w-full">
       {/* 프로그레스 단계 숫자 표시 */}
-      <div className="flex justify-center mt-2 mb-[6px]">
-        <span className="text-xs text-[#6B7178]"> {step}/12</span>
+      <div className="flex justify-center mt-2.5">
+        <span className="text-[14px] text-[#6B7178]"> {step}/12</span>
       </div>
 
       {/* 프로그레스 바 */}
-      <div className="w-full bg-[#E5E5EA] h-2 rounded-full overflow-hidden">
+      <div className="w-full bg-[#E5E5EA] h-2 mt-1.5 rounded-full overflow-hidden">
         <div
           className="h-full bg-[#84A667] transition-all duration-300"
           style={{ width: `${(step / 12) * 100}%` }}

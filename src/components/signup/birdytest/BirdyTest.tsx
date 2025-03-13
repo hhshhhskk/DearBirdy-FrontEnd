@@ -34,7 +34,7 @@ const BirdyTest = () => {
   };
 
   return (
-    <div>
+    <div className="flex justify-center w-full">
       {testStep === 0 && <BirdyTestIntro onStart={() => setTestStep(1)} />}
       {testStep > 0 && testStep <= 12 && (
         <BirdyTestStep step={testStep} onAnswer={handleAnswer} />

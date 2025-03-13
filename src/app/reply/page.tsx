@@ -62,12 +62,12 @@ const ReplyPage: React.FC = () => {
 
   const onSubmit = async (data: FormValues) => {
     const replyForm = {
-      ...data, // 기존 데이터(title, content)
+      ...data,
       categoryName,
       letterStatusSeq,
     };
 
-    // console.log("최종 전송 데이터:", replyForm);
+    console.log("최종 전송 데이터:", replyForm);
 
     await postReply(replyForm);
     router.push("/reply/complete");
@@ -189,12 +189,7 @@ rounded-[10px] border border-[#84A667] bg-white shadow-[1px_1px_8px_0px_#D2D4CB]
               </span>
             </div>
           </div>
-          {/* <div className="flex justify-end mt-2 mr-4">
-            <span className="text-[#AEAEB2] text-center text-sm font-medium leading-5 tracking-[-0.056px]">
-              {charCount}/300자
-            </span>
-          </div> */}
-          {/* 진행 메시지 */}
+          {/* 진행 메시지 프로그래스 바 */}
           <div className="flex items-center justify-between mt-2">
             <span className="text-sm text-[#6B7178]">
               {letterLength > 0 ? progressMessage.text : ""}
@@ -208,7 +203,6 @@ rounded-[10px] border border-[#84A667] bg-white shadow-[1px_1px_8px_0px_#D2D4CB]
               {charCount.length}/300자
             </div>
           </div>
-
           <div className="w-full h-[5px] bg-[#E5E5EA] mt-1">
             <div
               className="h-[5px]"
