@@ -30,9 +30,6 @@ export const getAccessToken = async (code: string) => {
     // ✅ Zustand에 저장
     useAuthStore.getState().setAuth(accessToken, refreshToken);
 
-    // 로그인시 user기본정보 담기
-    sessionStorage.setItem("userData", JSON.stringify(response.data.data));
-
     return { access_token: accessToken, isNewUser };
   } catch (error) {
     console.error("❌ 카카오 로그인 요청 실패:", error);
