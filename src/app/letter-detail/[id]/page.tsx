@@ -617,7 +617,7 @@ const LetterDetailId: React.FC = () => {
             </div>
           </div>
           <p className="w-full mt-6 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
-            {letter.sendLetter.letterTitle}
+            {letter.replyLetter.letterTitle}
           </p>
           <p className="w-full h-[240px] mt-2 text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
             {letter.replyLetter.letter}
