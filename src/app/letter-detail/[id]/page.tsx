@@ -56,7 +56,7 @@ const LetterDetailId: React.FC = () => {
     useState<string>("default");
 
   useEffect(() => {
-    const storedData = sessionStorage.getItem("userData");
+    const storedData = sessionStorage.getItem("userInfo");
 
     if (storedData) {
       const parsedData = JSON.parse(storedData);
@@ -247,13 +247,14 @@ const LetterDetailId: React.FC = () => {
       )}
 
       <div className="min-h-screen bg-[#f9f8f3] flex flex-col px-4 gap-2">
-        <header className="relative w-full h-[56px] mt-[59px] flex items-center">
+        <header className="relative w-full h-[56px] flex items-center">
           <Image
             src="/images/icons/arrow_left_icon.svg"
             alt="왼쪽 방향 아이콘"
             width={24}
             height={24}
             onClick={() => router.back()}
+            className="cursor-pointer"
           />
           <Image
             src={`/images/birds/${sendUserBirdKey}_24.svg`}

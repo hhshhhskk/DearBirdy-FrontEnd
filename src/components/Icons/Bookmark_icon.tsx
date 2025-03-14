@@ -28,6 +28,7 @@ const BookMarkIcon: React.FC<SvgIconProps> = ({
   };
   return (
     <svg
+      className="cursor-pointer"
       onClick={BookMarkClicked}
       xmlns="http://www.w3.org/2000/svg"
       width="25"
