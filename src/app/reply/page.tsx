@@ -77,7 +77,7 @@ const ReplyPage: React.FC = () => {
     <div className="relative w-full min-h-screen bg-[#f9f8f3] flex flex-col px-4">
       {previewModal && <ReplyPreview setPreviewModal={setPreviewModal} />}
       {guideModal && <ReplyGuide setGuideModal={setGuideModal} />}
-      <header className="w-full h-[56px] mt-[59px] flex justify-between items-center">
+      <header className="w-full h-[56px] flex justify-between items-center">
         <Image
           src="/images/icons/arrow_left_icon.svg"
           alt="왼쪽 방향 아이콘"
@@ -88,13 +88,19 @@ const ReplyPage: React.FC = () => {
         />
         <div
           className={`flex h-10 px-4 py-2 items-center gap-1 rounded-[10px] ${
-            charCount.length === 0 ? "bg-[#D1D1D6]" : "bg-[#84A667]"
+            charCount.length >= 30
+              ? "bg-[#84A667] cursor-pointer"
+              : "bg-[#D1D1D6]"
           }`}
-          onClick={handleSubmit(onSubmit)}
+          onClick={() => {
+            if (charCount.length >= 30) {
+              handleSubmit(onSubmit)();
+            }
+          }}
         >
           <span
             className={`text-center text-sm font-medium leading-[20px] tracking-[-0.056px] ${
-              charCount.length === 0 ? "text-[#8E8E93]" : "text-[#F0F1EC]"
+              charCount.length >= 30 ? "text-[#F0F1EC]" : "text-[#8E8E93]"
             } `}
           >
             다음
@@ -113,7 +119,7 @@ const ReplyPage: React.FC = () => {
           className="flex items-center justify-start w-full mt-[7px]"
           onClick={() => setGuideModal(true)}
         >
-          <p className="text-[#84A667] text-center text-sm font-medium leading-5 tracking-[-0.056px] underline">
+          <p className="cursor-pointer text-[#84A667] text-center text-sm font-medium leading-5 tracking-[-0.056px] underline">
             답장 이렇게 쓰세요
           </p>
         </div>
@@ -153,7 +159,7 @@ const ReplyPage: React.FC = () => {
           </div>
           {/* 편지 다시보기 버튼*/}
           <div
-            className="flex justify-end w-full"
+            className="flex justify-end w-full cursor-pointer"
             onClick={() => setPreviewModal(true)}
           >
             <div

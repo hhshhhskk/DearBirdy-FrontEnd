@@ -43,7 +43,7 @@ export default function LetterGuideModalSenior({
               ✖
             </button>
           </div>
-          <div className="gap-2 flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center gap-2">
             {/* 가이드 이미지 */}
             <Image
               src="/images/common/guide.png"

@@ -62,7 +62,6 @@ const YouthLetterStorage: React.FC = () => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-    console.log("화면 보여짐");
   }, [fetchNextPage, inView, hasNextPage, isFetchingNextPage]);
 
   const handleShowToast = () => {
@@ -142,21 +141,13 @@ const YouthLetterStorage: React.FC = () => {
                     letter.birdName && birdNameMap[letter.birdName]
                       ? birdNameMap[letter.birdName]
                       : "default";
-
-                  // console.log(
-                  //   "birdName:",
-                  //   letter.birdName,
-                  //   "-> birdKey:",
-                  //   birdKey
-                  // );
-
                   return (
                     <div
                       key={letter.letterStatusSeq}
                       onClick={() =>
                         router.push(`/letter-detail/${letter.letterStatusSeq}`)
                       }
-                      className={`rounded-[16px] w-[167px] h-[182px] bg-white flex flex-col flex-1 p-4 ${
+                      className={`rounded-[16px] h-[182px] bg-white flex flex-col flex-1 p-4 ${
                         !letter.read && letter.nickname !== "익명새"
                           ? "border border-[#84A667] rounded-[16px] "
                           : "none"
@@ -185,6 +176,11 @@ const YouthLetterStorage: React.FC = () => {
                       <div className="text-[#292D32] text-[16px] font-bold leading-[24px] overflow-hidden text-ellipsis whitespace-nowrap">
                         {letter.title}
                       </div>
+                      {!letter.read && (
+                        <span className="inline-flex rounded-md bg-[#D6E173] h-6 px-2 w-fit items-center text-[#292D32] text-[12px] font-medium leading-[16px] tracking-[-0.048px] text-center">
+                          답장 도착
+                        </span>
+                      )}
                     </div>
                   );
                 })

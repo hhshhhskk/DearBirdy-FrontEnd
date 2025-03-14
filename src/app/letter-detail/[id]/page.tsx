@@ -149,8 +149,10 @@ const LetterDetailId: React.FC = () => {
   let replyDate = "";
   let sendDate = "";
 
-  if (letter?.replyLetter !== null) {
+  if (letter?.sendLetter !== null) {
     sendDate = formatDate(letter?.sendLetter?.creatAt ?? "");
+  }
+  if (letter?.replyLetter !== null) {
     replyDate = formatDate(letter?.replyLetter?.creatAt ?? "");
   }
 
@@ -163,8 +165,8 @@ const LetterDetailId: React.FC = () => {
   // 청년 버전
   return userData?.roleName === "MENTEE" ? (
     <div className="relative">
+      {/* 오버레이 */}
       {showModal && (
-        /* 오버레이 */
         <>
           <div className="absolute inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
           <div className="fixed bottom-0 left-0 z-20 flex w-[375px] p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#F9F8F3]">
@@ -312,6 +314,7 @@ const LetterDetailId: React.FC = () => {
                   </span>
                 </div>
               </div>
+              <p>반갑습니다. {letter.replyLetter.letterTitle}</p>
               <p className="w-full h-[240px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
                 {letter.replyLetter.letter}
               </p>
@@ -395,8 +398,8 @@ const LetterDetailId: React.FC = () => {
         {/* 보낸 편지 */}
         <main className="">
           <div className="flex flex-col items-center justify-center">
-            <div className="pt-[16px] px-4 pb-[20px] flex break-all flex-col items-center gap-[24px] border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
-              <div className="flex flex-col w-full gap-4">
+            <div className="w-full pt-[16px] px-4 pb-[20px] flex break-all flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
+              <div className="flex flex-col w-full">
                 <div className="flex justify-start gap-2">
                   <Image
                     src="/images/icons/direct_send_icon.svg"
@@ -408,7 +411,7 @@ const LetterDetailId: React.FC = () => {
                     보낸 편지
                   </span>
                 </div>
-                <div className="flex items-end justify-start gap-2">
+                <div className="flex items-end justify-start gap-2 mt-4">
                   <Image
                     src={`/images/birds/${sendReplyUserBirdKey}_50.svg`}
                     alt="프로필 새 50"
@@ -423,14 +426,17 @@ const LetterDetailId: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <p className="w-full h-[240px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
+              <p className="w-full mt-6 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
+                {letter.sendLetter.letterTitle}
+              </p>
+              <p className="w-full h-[240px] mt-2 text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
                 {letter.sendLetter.letter}
               </p>
-              <div className="flex flex-col items-start w-full gap-2 ">
-                <p className="text-right text-[#8E8E93] text-xs font-normal leading-4 tracking-[-0.048px]">
+              <div className="flex flex-col items-start w-full ">
+                <p className="text-right text-[#8E8E93] text-xs font-normal leading-4 tracking-[-0.048px] mt-6">
                   {sendDate}
                 </p>
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-end justify-center gap-2 mt-2">
                   <Image
                     src={`/images/birds/${sendUserBirdKey}_24.svg`}
                     alt="프로필 새 24"
@@ -462,7 +468,7 @@ const LetterDetailId: React.FC = () => {
       {showThrowAfterModal && (
         <ThrowAfterModal setShowThrowAfterModal={setShowThrowAfterModal} />
       )}
-      <header className="relative w-full h-[56px] mt-[59px] flex items-center">
+      <header className="relative w-full h-[56px] flex items-center">
         <Image
           src="/images/icons/arrow_left_icon.svg"
           alt="왼쪽 방향 아이콘"
@@ -497,8 +503,8 @@ const LetterDetailId: React.FC = () => {
       {letter.sendLetter ? (
         // 보낸 편지
         <main className="flex flex-col items-center justify-center">
-          <div className="w-[343px] p-[16px] pt-[16px] pb-[20px] flex flex-col items-center gap-[24px] border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
-            <div className="flex flex-col w-full gap-4">
+          <div className=" pt-[16px] px-4 pb-[20px] flex flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
+            <div className="flex flex-col w-full">
               <div className="flex justify-start gap-2">
                 <Image
                   src="/images/icons/direct_send_icon.svg"
@@ -510,7 +516,7 @@ const LetterDetailId: React.FC = () => {
                   보낸 편지
                 </span>
               </div>
-              <div className="flex items-end justify-start gap-2">
+              <div className="flex items-end justify-start gap-2 mt-4">
                 <Image
                   src={`/images/birds/${sendReplyUserBirdKey}_50.svg`}
                   alt="프로필 새 50"
@@ -525,7 +531,10 @@ const LetterDetailId: React.FC = () => {
                 </span>
               </div>
             </div>
-            <p className="w-full h-[240px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
+            <p className="w-full mt-6 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
+              {letter.sendLetter.letterTitle}
+            </p>
+            <p className="w-full h-[240px] mt-2 text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
               {letter.sendLetter.letter}
             </p>
             <div className="flex flex-col items-start w-full gap-2 ">
@@ -579,8 +588,8 @@ const LetterDetailId: React.FC = () => {
       {/* 받은 편지 */}
 
       <main className="flex flex-col items-center justify-center">
-        <div className="w-[343px] p-[16px] pt-[16px] pb-[20px] flex flex-col items-center gap-[24px] border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
-          <div className="flex flex-col w-full gap-4">
+        <div className="w-full pt-[16px] px-4 pb-[20px] flex flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
+          <div className="flex flex-col w-full ">
             <div className="flex justify-start gap-2">
               <Image
                 src="/images/icons/direct_inbox_icon.svg"
@@ -592,7 +601,7 @@ const LetterDetailId: React.FC = () => {
                 받은 편지
               </span>
             </div>
-            <div className="flex items-end justify-start gap-2">
+            <div className="flex items-end justify-start gap-2 mt-4">
               <Image
                 src={`/images/birds/${replyUserBirdKey}_50.svg`}
                 alt="프로필 새 50"
@@ -607,14 +616,17 @@ const LetterDetailId: React.FC = () => {
               </span>
             </div>
           </div>
-          <p className="w-full h-[240px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
+          <p className="w-full mt-6 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
+            {letter.sendLetter.letterTitle}
+          </p>
+          <p className="w-full h-[240px] mt-2 text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
             {letter.replyLetter.letter}
           </p>
-          <div className="flex flex-col items-start w-full gap-2 ">
-            <p className="text-right text-[#8E8E93] text-xs font-normal leading-4 tracking-[-0.048px]">
+          <div className="flex flex-col items-start w-full ">
+            <p className="text-right text-[#8E8E93] text-xs font-normal leading-4 tracking-[-0.048px] mt-6">
               {replyDate}
             </p>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2 mt-2">
               <span className="text-right text-[#292D32] font-sandoll-baikzongyulpil text-[18px] font-bold iceJaram-Rg leading-[21.6px]">
                 from. {letter.replyLetter.sendUser}
               </span>
@@ -624,7 +636,7 @@ const LetterDetailId: React.FC = () => {
       </main>
       {!letter.sendLetter ? (
         <>
-          <div className="flex items-center justify-center mt-16">
+          <div className="flex items-center justify-center mt-16 cursor-pointer">
             <p
               className="text-[#84A667] text-[14px] font-medium leading-[20px] tracking-[-0.056px]"
               onClick={throwClicked}
@@ -633,7 +645,7 @@ const LetterDetailId: React.FC = () => {
             </p>
           </div>
           <div
-            className="flex w-full h-[50px] justify-center items-center  gap-1 align-stretch rounded-lg bg-[#292D32]"
+            className="cursor-pointer flex w-full h-[50px] justify-center items-center  gap-1 align-stretch rounded-lg bg-[#292D32]"
             onClick={() => {
               router.push("/reply");
               setLetterStatusSeq(letter.letterStatusSeq);

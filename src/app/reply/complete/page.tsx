@@ -56,25 +56,26 @@ const LetterReplyCompletePage: React.FC = () => {
             </p>
           )}
         </div>
-        <div></div>
-        <div className="rounded-[12px] border border-[#E5E5EA] bg-[#F0F1EC] flex w-[343px] p-[10px_16px] justify-between items-center mt-[80px]">
-          <div className="flex flex-col items-start justify-start">
-            <p className="text-[#6B7178] text-center text-[14px] font-normal leading-[22px] tracking-[-0.056px]">
-              답장을 확인하면 고마움 표시가 도착해요.
-            </p>
-            <p className="text-[#6B7178] text-center text-[14px] font-normal leading-[22px] tracking-[-0.056px]">
-              고마움 표시가 오면 알림을 받을까요?
-            </p>
+        <div className="absolute bottom-[44px]">
+          <div className="rounded-[12px] border border-[#E5E5EA] bg-[#F0F1EC] flex w-[343px] p-[10px_16px] justify-between items-center mt-[80px]">
+            <div className="flex flex-col items-start justify-start">
+              <p className="text-[#6B7178] text-center text-[14px] font-normal leading-[22px] tracking-[-0.056px]">
+                답장을 확인하면 고마움 표시가 도착해요.
+              </p>
+              <p className="text-[#6B7178] text-center text-[14px] font-normal leading-[22px] tracking-[-0.056px]">
+                고마움 표시가 오면 알림을 받을까요?
+              </p>
+            </div>
+            <Toggle />
           </div>
-          <Toggle />
-        </div>
-        <div
-          className="w-[343px] p-[13px_16px] flex justify-center items-center gap-[8px] rounded-[8px] bg-[#292D32] mt-[17px]"
-          onClick={() => router.push("/home")}
-        >
-          <span className="text-[#E5E5EA] text-center text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
-            홈으로
-          </span>
+          <div
+            className="w-[343px] p-[13px_16px] flex justify-center items-center gap-[8px] rounded-[8px] bg-[#292D32] mt-[17px] cursor-pointer"
+            onClick={() => router.push("/home")}
+          >
+            <span className="text-[#E5E5EA] text-center text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
+              홈으로
+            </span>
+          </div>
         </div>
       </main>
     </div>

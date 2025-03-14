@@ -34,8 +34,17 @@ export default function WriteLetter() {
 
   return (
     <div className="relative flex flex-col w-full h-full gap-2 text-black items-around">
+      {/* 편지 가이드 모달 컴포넌트 적용 */}
+      <div className="relative flex items-center justify-center">
+        <LetterGuideModal
+          isOpen={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+          type="letter"
+        />
+      </div>
+
       {/* 헤더 상단 고정 h 56 */}
-      <div className="fixed top-0 min-w-[343px] h-[56px] flex">
+      <div className="fixed top-0 min-w-[343px] h-[56px] flex bg-[#F9F8F3]">
         <nav className="w-full flex justify-between items-center border-b border-[#F0F1EC]">
           <LeftArrow
             className="w-6 h-6 cursor-pointer"
@@ -93,15 +102,6 @@ export default function WriteLetter() {
 
         {/* 프로그레스바 컴포넌트 적용 */}
         <LetterProgress letterLength={letter.trim().length} />
-
-        {/* 편지 가이드 모달 컴포넌트 적용 */}
-        <div className="relative flex justify-center">
-          <LetterGuideModal
-            isOpen={isDrawerOpen}
-            onClose={() => setIsDrawerOpen(false)}
-            type="letter"
-          />
-        </div>
       </div>
     </div>
   );

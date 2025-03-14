@@ -86,23 +86,23 @@ const NicknameStep = () => {
   }, [step]);
 
   return (
-    <div>
+    <div className="mt-2">
       {/* ✅ InfoBox 컴포넌트 적용 */}
       <InfoBox
         imageSrc="/images/signup/bluebird.svg"
         altText="닉네임 아이콘"
         text="고마워요! 우선은요. 제가 당신을 기억할 수 있게 이름을 알려주세요!"
       />
-      <div>
+      <div className="mt-[44px]">
         {/* ✅ 닉네임 입력 영역 */}
-        <div className="relative mt-14 w-full">
+        <div className="relative w-full py-[13px] border-b border-[#D1D1D6] ">
           <input
             type="text"
             value={nickname}
             onChange={handleChange}
             maxLength={10}
             placeholder="닉네임을 입력하세요"
-            className={`w-full pb-3 text-lg outline-none border-b-2 transition-colors
+            className={`w-full text-lg outline-none transition-colors 
       ${
         errorType
           ? "border-[#FF2A2C]"
@@ -118,7 +118,7 @@ const NicknameStep = () => {
 
           {/* ✅ 닉네임 사용 가능 체크 아이콘 */}
           {isAvailable && !errorType && (
-            <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+            <div className="absolute transform -translate-y-1/2 right-2 top-1/2">
               <Image
                 src="/images/icons/icon_check.svg"
                 alt="사용 가능"
@@ -165,7 +165,7 @@ const NicknameStep = () => {
         </div>
 
         {/* ✅ 다음 버튼 */}
-        <div className="absolute bottom-10 flex justify-center">
+        <div className="absolute bottom-[44px] flex justify-center">
           <NextButton
             text="다음"
             onClick={handleNextStep}
@@ -175,9 +175,9 @@ const NicknameStep = () => {
 
         {/* ✅ 로딩 상태 아이콘 */}
         {loading && (
-          <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+          <div className="absolute transform -translate-y-1/2 right-2 top-1/2">
             <svg
-              className="animate-spin h-5 w-5 text-gray-500"
+              className="w-5 h-5 text-gray-500 animate-spin"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

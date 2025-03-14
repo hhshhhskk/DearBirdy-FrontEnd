@@ -9,7 +9,7 @@ const ReplyGuide: React.FC<IProps> = ({ setGuideModal }) => {
   return (
     <>
       <div className="absolute inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
-      <div className="fixed bottom-0 left-0 z-20 flex w-[375px] p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#FFF]">
+      <div className="fixed left-1/2 transform -translate-x-1/2 bottom-0 z-20 flex w-[376px] p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#FFF]">
         <div
           className="flex justify-end w-full"
           onClick={() => setGuideModal(false)}
@@ -19,6 +19,7 @@ const ReplyGuide: React.FC<IProps> = ({ setGuideModal }) => {
             alt="닫기 아이콘"
             width={24}
             height={24}
+            className="cursor-pointer"
           />
         </div>
         <div>

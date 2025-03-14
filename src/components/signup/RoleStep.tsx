@@ -37,7 +37,7 @@ const RoleStep = () => {
   };
 
   return (
-    <div>
+    <div className="mt-2">
       {/* ✅ InfoBox 컴포넌트 적용 */}
       <InfoBox
         imageSrc="/images/signup/bluebird-2.svg"
@@ -47,13 +47,14 @@ const RoleStep = () => {
 
       <div>
         {/* ✅ 역할 선택 영역 */}
-        <div className="flex justify-center gap-6 mt-14">
+        <div className="flex justify-center gap-[7px] mt-14">
           <RoleCard
             role="MENTEE"
             selectedRole={selectedRole}
             onSelect={handleSelectRole}
             imageSrc="/images/role/mentee.svg"
-            description="조언을 듣고 싶은 2040"
+            description1="조언을 듣고 싶은"
+            description2="2040"
             title="인생후배"
           />
 
@@ -62,7 +63,8 @@ const RoleStep = () => {
             selectedRole={selectedRole}
             onSelect={handleSelectRole}
             imageSrc="/images/role/mentor.svg"
-            description="조언을 해주고픈 5060"
+            description1="조언을 해주고픈"
+            description2="5060"
             title="인생선배"
           />
         </div>

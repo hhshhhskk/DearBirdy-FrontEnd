@@ -10,7 +10,7 @@ interface InfoBoxProps {
 
 const InfoBox: React.FC<InfoBoxProps> = ({ imageSrc, altText, text }) => {
   return (
-    <div className="w-[343px] h-[108px] bg-white border border-[#f0f1ec] rounded-[20px] mx-auto flex items-center gap-[18px] mb-[44px] px-4 py-3.5">
+    <div className="w-full h-[108px] bg-white border border-[#f0f1ec] rounded-[20px] mx-auto flex items-center gap-[18px] px-4 py-3.5">
       {/* 왼쪽 아이콘 */}
       <div className="w-[80px] h-[80px] aspect-square relative">
         <Image

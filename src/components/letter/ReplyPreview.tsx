@@ -1,5 +1,6 @@
 "use client";
 import { IData } from "@/app/letter-detail/[id]/page";
+import { birdNameMap } from "@/constants/birdNameMap";
 import { getLetterDetail } from "@/services/letterDetail";
 import { useLetterInfoStore } from "@/store/letterInfoStore";
 import Image from "next/image";
@@ -64,7 +65,7 @@ const ReplyPreview: React.FC<IProps> = ({ setPreviewModal }) => {
       {/* 오버레이 */}
       <div className="absolute inset-0  z-20 bg-[rgba(51,51,51,0.80)]">
         <div
-          className="flex justify-end w-full  mt-[59px] pr-[16px] "
+          className="cursor-pointer flex justify-end w-full  mt-[59px] pr-[16px] "
           onClick={() => setPreviewModal(false)}
         >
           <Image
@@ -80,12 +81,14 @@ const ReplyPreview: React.FC<IProps> = ({ setPreviewModal }) => {
       <div className="flex z-30 w-[343px] h-[550px] p-[24px_16px] flex-col items-start gap-[10px] rounded-[30px] border border-[#F4F5EF] bg-white">
         <div className="flex items-end justify-start gap-2">
           <Image
-            src={`/images/birds/${letter?.replyLetter.replyUserBird}_50.svg`}
+            src={`/images/birds/${
+              letter && birdNameMap[letter.replyLetter.replyUserBird]
+            }_50.svg`}
             alt="프로필 새 50"
             width={50}
             height={50}
           />
-          <p className="text-[#000] text-[23px] font-normal leading-[27.6px] text-bold iceJaram-Rg">
+          <p className="text-[#000] text-[23px] font-bold leading-[27.6px] iceJaram-Rg">
             Dear. {letter?.replyLetter.replyUser}
           </p>
           <span className="p-[1px_6px] rounded-[6px] bg-[#E5E5EA] text-[#6B7178] text-center text-[14px] font-medium leading-[20px] tracking-[-0.056px]">
@@ -98,7 +101,7 @@ const ReplyPreview: React.FC<IProps> = ({ setPreviewModal }) => {
         <p className="text-[#8E8E93] text-right text-[12px] font-normal leading-[16px] tracking-[-0.048px]">
           {replyDate}
         </p>
-        <span className="text-[#292D32] text-right font-[Sandoll BaikzongyulPil] text-[18px] font-normal leading-[21.6px] text-bold iceJaram-Rg">
+        <span className="text-[#292D32] text-right font-[Sandoll BaikzongyulPil] text-[18px] font-bold leading-[21.6px] iceJaram-Rg">
           from. {letter?.replyLetter.sendUser}
         </span>
       </div>
