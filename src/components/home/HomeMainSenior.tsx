@@ -30,7 +30,7 @@ const HomeMainSenior: React.FC<IProps> = ({ userData }) => {
 
   return (
     <>
-      <main className="flex flex-col min-h-screen p-4">
+      <main className="flex flex-col min-h-screen px-4">
         <div className="flex flex-col flex-1 gap-4">
           <button onClick={() => setIsGuideOpen(true)}>
             <Banner />

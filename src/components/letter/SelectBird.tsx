@@ -92,13 +92,13 @@ export default function SelectBird() {
 
   // ✅ 데이터가 없을 때 로딩 메시지 표시
   if (birds.length === 0) {
-    return <p className="text-center mt-20">로딩 중...</p>;
+    return <p className="mt-20 text-center">로딩 중...</p>;
   }
 
   return (
-    <div className="relative text-black flex flex-col items-center max-w-[476px]">
+    <div className="relative flex flex-col items-center h-screen text-black">
       {/* 상단 네비게이션 */}
-      <nav className="w-full flex justify-start py-4">
+      <nav className="flex justify-start w-full py-4">
         <LeftArrow
           className="w-6 h-6 cursor-pointer"
           stroke="#292D32"
@@ -117,18 +117,18 @@ export default function SelectBird() {
       </p>
 
       {/* Swiper 카드 영역 */}
-      <div className=" max-w-[360px]">
-        <div className="mt-[21px] w-full  min-w-[360px]">
+      <div className=" max-w-[380px]">
+        <div className="mt-[21px] pl-[21px] w-full">
           <Swiper
             modules={[Pagination]}
             spaceBetween={10} // ✅ 카드 간격 유지
             slidesPerView="auto" // ✅ Centered Auto 적용
-            centeredSlides={true} // ✅ 가운데 정렬
+            // centeredSlides={true} ✅ 가운데 정렬
             onSlideChange={(swiper) => {
               setActiveIndex(swiper.realIndex); // ✅ 현재 보여지는 슬라이드의 인덱스 저장
               setSelectedBird(birds[swiper.realIndex]?.birdName); // ✅ 자동으로 선택된 새 변경
             }}
-            className="select-bird-swiper"
+            className="select-bird-swiper "
             pagination={{
               clickable: true,
               renderBullet: (index, className) => {
@@ -140,7 +140,11 @@ export default function SelectBird() {
           >
             {birds.map((bird, index) => (
               <SwiperSlide key={index} className="max-w-[306px]">
-                <div className="w-full h-[492px] bg-white rounded-xl flex flex-col items-center justify-center px-4 py-10 cursor-pointer">
+                <div
+                  className={`w-full h-[492px] bg-white rounded-xl flex flex-col items-center justify-center px-4 py-10 cursor-pointer 
+                  ${activeIndex === index && "border border-[#84A667]"}
+                  `}
+                >
                   {/* 🐦 프로필 이미지 */}
                   <Image
                     src={getImageSrc(bird.birdName)} // ✅ 한글 → 영문 변환 후 이미지 적용
@@ -198,7 +202,7 @@ export default function SelectBird() {
 
       {/* 하단 버튼 */}
       <button
-        className="cursor-pointer select-none w-[343px] h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center mt-6"
+        className="absolute bottom-[44px] cursor-pointer select-none w-[343px] h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center "
         onClick={handleSendLetter}
         disabled={isSending}
       >

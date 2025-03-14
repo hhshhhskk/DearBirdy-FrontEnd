@@ -33,8 +33,8 @@ const BirdyTip: React.FC = () => {
   if (!tip) return;
 
   return (
-    <div className="flex flex-col p-[20px_24px] justify-center items-start rounded-[16px] bg-[#FFF] mt-4 px-6 py-5">
-      <div className="flex items-center w-full gap-4">
+    <div className="w-[343px] flex flex-col p-[20px_24px] justify-center items-start rounded-[16px] bg-[#FFF] mt-4">
+      <div className="flex items-center gap-4">
         <Image
           src={`/images/birds/${birdKey}_tip.svg`}
           alt="버디팁 새 프로필"
@@ -42,11 +42,11 @@ const BirdyTip: React.FC = () => {
           height={60}
           className="w-[68px] h-[68px]"
         />
-        <div>
+        <div className="">
           <span className="text-[#6B7178] text-[12px] leading-[16px] tracking-[-0.048px]">
             버디팁
           </span>
-          <p className="text-[#292D32] text-[14px] leading-[20px] tracking-[-0.056px] font-bold font-pretendard">
+          <p className="text-[#292D32] text-[14px] leading-[20px] tracking-[-0.056px] font-bold break-words">
             {tip?.tip}
           </p>
         </div>

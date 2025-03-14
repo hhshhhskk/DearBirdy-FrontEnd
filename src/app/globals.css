@@ -27,14 +27,32 @@
   --font-mono: var(--font-geist-mono);
 }
 
-:root {
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #f9f8f3;
     --foreground: #ededed;
   }
+}
+
+/* 모든 요소와 가상 요소(before, after)까지 border-box 적용 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* 크롬, 사파리 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 파이어폭스 */
+html {
+  scrollbar-width: none;
+}
+
+/* IE, 엣지 */
+body {
+  -ms-overflow-style: none;
 }
 
 body {

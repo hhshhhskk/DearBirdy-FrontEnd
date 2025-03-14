@@ -33,9 +33,10 @@ export default function WriteLetter() {
   };
 
   return (
-    <div className="relative w-full h-full text-black flex flex-col items-around gap-2">
-      <div>
-        <nav className="flex justify-between py-4 border-b border-[#F0F1EC]">
+    <div className="relative flex flex-col w-full h-full gap-2 text-black items-around">
+      {/* 헤더 상단 고정 h 56 */}
+      <div className="fixed top-0 min-w-[343px] h-[56px] flex">
+        <nav className="w-full flex justify-between items-center border-b border-[#F0F1EC]">
           <LeftArrow
             className="w-6 h-6 cursor-pointer"
             stroke="#292D32"
@@ -54,9 +55,9 @@ export default function WriteLetter() {
           </button>
         </nav>
       </div>
-      <div>
+      <div className="mt-[64px]">
         <div className="flex flex-col gap-1.5">
-          <p className="whitespace-break-spaces text-xl font-bold leading-7 tracking-tight">
+          <p className="text-xl font-bold leading-7 tracking-tight whitespace-break-spaces">
             {categoryName
               ? `${categoryName}에 대한 고민\n이야기를 편지에 담아주세요`
               : "어떤 이야기를 나누고 싶으신가요?"}

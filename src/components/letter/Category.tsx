@@ -23,9 +23,9 @@ export default function Category() {
   };
 
   return (
-    <div className="relative text-black w-full h-full">
+    <div className="relative w-full h-full text-black">
       <div className="flex flex-col gap-2">
-        <nav className="flex justify-between  py-4 ">
+        <nav className="flex justify-between py-4">
           <LeftArrow
             className="w-6 h-6 cursor-pointer select-none"
             stroke="#292D32"
@@ -35,7 +35,7 @@ export default function Category() {
 
         <div className="flex flex-col gap-6">
           <div>
-            <p className="whitespace-break-spaces text-xl font-bold leading-7 tracking-tight">
+            <p className="text-xl font-bold leading-7 tracking-tight whitespace-break-spaces">
               {"어떤 이야기를 \n나누고 싶으신가요?"}
             </p>
             <p className="mt-1.5">아래 카테고리 중에서 선택해주세요</p>

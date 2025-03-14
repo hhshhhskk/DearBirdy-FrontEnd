@@ -83,8 +83,8 @@ const SeniorLetterStorage: React.FC = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="mb-[60px]">
-        <header className="fixed top-0 flex gap-1 h-[115px] py-[11px] items-end bg-[#F9F8F3]">
+      <div className="mb-[60px] w-full h-full flex flex-col gap-2">
+        <header className="cursor-pointer w-full fixed top-0 flex gap-1 h-[56px] py-[11px] items-end bg-[#F9F8F3]">
           {category.map((title, idx) => (
             <span
               key={idx}
@@ -100,8 +100,8 @@ const SeniorLetterStorage: React.FC = () => {
           ))}
         </header>
         {shouldApplyCondition ? (
-          <main className="overflow-y-auto mt-[120px] min-h-[calc(100vh)]">
-            <div className="grid w-full min-w-[343px] grid-cols-2 gap-2">
+          <main className="overflow-y-auto mt-[64px] min-h-[calc(100vh)]">
+            <div className="grid w-full min-w-[343px]  gap-2">
               {data?.pages.map((page) =>
                 page.dataList.map((letter: Letter) => {
                   const birdKey =

@@ -49,16 +49,11 @@ const YouthLetterStorage: React.FC = () => {
     });
 
   const isFirstRender = useRef(true);
-  const [shouldApplyCondition, setShouldApplyCondition] = useState(false);
 
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false; // 첫 렌더링 후 false로 변경
     }
-    // ✅ '저장한 편지'일 경우에만 데이터 유무를 체크해서 비활성화
-    setShouldApplyCondition(
-      cateNum === 3 ? data?.pages[0].totalPage !== 0 : true
-    );
   }, [data, cateNum]);
 
   const { ref, inView } = useInView();
@@ -67,6 +62,7 @@ const YouthLetterStorage: React.FC = () => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
+    console.log("화면 보여짐");
   }, [fetchNextPage, inView, hasNextPage, isFetchingNextPage]);
 
   const handleShowToast = () => {
@@ -78,28 +74,68 @@ const YouthLetterStorage: React.FC = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="mb-[60px] w-full h-full flex flex-col gap-2">
-        <div>
-          <header className="cursor-pointer fixed top-0 flex gap-1 h-[115px] py-[11px] items-end bg-[#F9F8F3]">
-            {category.map((title, idx) => (
-              <span
-                key={idx}
-                onClick={() => setCateNum(idx + 1)} // ✅ 저장한 편지가 없을 때도 이동 가능하도록 변경
-                className={`px-3.5 py-1.5 rounded-[20px] min-w-[53px] text-center ${
-                  cateNum === idx + 1
-                    ? "bg-[#292D32] text-[#FFF]"
-                    : "bg-[#F9F8F3] border border-[#E5E5EA] text-[#C7C7CC]"
-                }`}
-              >
-                {title}
-              </span>
-            ))}
-          </header>
-        </div>
+      <div className="relative mb-[60px] flex flex-col gap-2">
+        <header className="cursor-pointer min-w-[343px] fixed top-0 flex gap-1 h-[56px] py-[11px] items-end bg-[#F9F8F3]">
+          {category.map((title, idx) => (
+            <span
+              key={idx}
+              onClick={() => {
+                // 첫 전체조회시 데이터가 없으면 카테고리 잠김
 
-        {shouldApplyCondition ? (
-          <main className="overflow-y-auto mt-[120px] min-h-[calc(100vh)] flex justify-center">
-            <div className="cursor-pointer select-none grid w-full max-w-[700px] grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-2 justify-items-center">
+                if (cateNum === 1) {
+                  if (data?.pages[0].totalPage !== 0) {
+                    setCateNum(idx + 1);
+                  }
+                } else {
+                  setCateNum(idx + 1);
+                }
+              }}
+              className={`px-3.5 py-1.5 rounded-[20px] min-w-[53px] text-center ${
+                cateNum === idx + 1
+                  ? "bg-[#292D32] text-[#E5E5EA]"
+                  : "bg-[#F9F8F3] border border-[#E5E5EA] text-[#C7C7CC]"
+              }`}
+            >
+              {title}
+            </span>
+          ))}
+        </header>
+        {/* 전체 데이터가 없을때 */}
+        {data?.pages[0].totalPage === 0 && cateNum === 1 ? (
+          <>
+            <main className="flex flex-grow w-full mt-[64px]">
+              <div className="w-full pt-8 px-4 pb-6 flex flex-col items-center  rounded-[30px] border border-[#F4F5EF] bg-[#FFF]">
+                <p className="text-[#292D32] text-center font-medium text-[16px] leading-[24px] tracking-[-0.064px] mt-[32px]">
+                  편지를 써보세요!
+                </p>
+                <p className="text-[#292D32] text-center font-bold text-[18px] leading-[26px] tracking-[-0.072px] mt-2">
+                  나의 현재 고민을 편지에 쓰고 <br />
+                  버디에게 보내볼까요?
+                </p>
+                <Image
+                  src="/images/birds/letter_storage_bird.svg"
+                  alt="편지보관함 새 이미지"
+                  width={300}
+                  height={260}
+                  className="mt-8 mb-6"
+                />
+
+                <div
+                  className="flex w-full cursor-pointer select-none h-[50px] justify-center items-center gap-1 mt-4 align-stretch rounded-lg bg-[#292D32]"
+                  onClick={() => router.push("/send")}
+                >
+                  <HomeLetterIcon fill="#FFF" />
+                  <span className="text-center text-white font-pretendard text-base leading-6 tracking-[-0.064px]">
+                    편지쓰기
+                  </span>
+                </div>
+              </div>
+            </main>
+            <BirdyTip />
+          </>
+        ) : (
+          <main className="overflow-y-auto mt-[64px] mb-2 flex justify-center">
+            <div className="grid w-full grid-cols-2 gap-2 cursor-pointer">
               {data?.pages.map((page) =>
                 page.dataList.map((letter: Letter) => {
                   const birdKey =
@@ -154,40 +190,8 @@ const YouthLetterStorage: React.FC = () => {
                 })
               )}
             </div>
-            <div ref={ref} className="h-10" />
+            <div ref={ref} className="h-1 bg-black" />
           </main>
-        ) : (
-          <>
-            <main className="flex flex-grow mt-[120px]">
-              <div className="mt-4 self-stretch p-[24px_16px] flex flex-col items-center w-full rounded-[30px] border border-[#F4F5EF] bg-white px-4">
-                <p className="text-[#292D32] text-center font-medium text-[16px] leading-[24px] tracking-[-0.064px] mt-[32px]">
-                  편지를 써보세요!
-                </p>
-                <p className="text-[#292D32] text-center font-bold text-[18px] leading-[26px] tracking-[-0.072px] mt-2">
-                  나의 현재 고민을 편지에 쓰고 <br />
-                  버디에게 보내볼까요?
-                </p>
-                <Image
-                  src="/images/birds/letter_storage_bird.svg"
-                  alt="편지보관함 새 이미지"
-                  width={300}
-                  height={260}
-                  className="mt-8 mb-6"
-                />
-
-                <div
-                  className="flex w-full cursor-pointer select-none h-[50px] justify-center items-center gap-1 mt-4 align-stretch rounded-lg bg-[#292D32]"
-                  onClick={() => router.push("/send")}
-                >
-                  <HomeLetterIcon fill="#FFF" />
-                  <span className="text-center text-white font-pretendard text-base leading-6 tracking-[-0.064px]">
-                    편지쓰기
-                  </span>
-                </div>
-              </div>
-            </main>
-            <BirdyTip />
-          </>
         )}
         {/* 책갈피 토스트 메세지 */}
         <div className="fixed flex flex-col items-center translate-x-1/2 bottom-10 right-1/2">

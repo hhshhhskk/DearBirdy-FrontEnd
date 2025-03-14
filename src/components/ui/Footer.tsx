@@ -45,11 +45,7 @@ const Footer: React.FC = () => {
             className="flex flex-col items-center justify-center gap-1 cursor-pointer"
             onClick={() => iconClicked(id)}
           >
-            <Icon
-              selectedIcon={selectedIcon}
-              read={userData?.read}
-              fill={selectedIcon === id ? "#292D32" : "#AEAEB2"}
-            />
+            <Icon selectedIcon={selectedIcon} read={userData?.read} />
             <span
               className={`select-none cursor-pointer text-center font-pretendard text-xs font-medium leading-4 tracking-tight ${
                 selectedIcon === id ? "text-[#292D32]" : "text-[#AEAEB2]"

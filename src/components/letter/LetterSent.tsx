@@ -18,7 +18,7 @@ export default function LetterSent() {
 
   /** ✅ 페이지 진입 시 세션스토리지에서 사용자 새 이름을 가져옴 */
   useEffect(() => {
-    const storedData = sessionStorage.getItem("userData");
+    const storedData = sessionStorage.getItem("userInfo");
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       if (parsedData.birdName) {
@@ -38,7 +38,7 @@ export default function LetterSent() {
   }, [myBirdName]); // ✅ myBirdName이 설정된 후 실행
 
   return (
-    <div className="relative flex flex-col items-center text-black">
+    <div className="relative flex flex-col items-center h-screen text-black">
       {/* 상단 여백 */}
       <div className="mt-[167px] text-center">
         <p className="text-[#292D32] text-[20px] font-bold leading-[28px] tracking-[-0.08px]">
@@ -58,28 +58,30 @@ export default function LetterSent() {
       </div>
 
       {/* 안내 박스 */}
-      <div className="mt-[171px] w-[343px] h-[64px] border border-[#E5E5EA] bg-[#F0F1EC] rounded-[12px] p-[10px] flex justify-between items-center">
-        <div>
-          <p className="text-[#6B7178] text-[14px] font-medium">
-            빠르면 하루, 최대 7일이 걸릴 수 있어요.
-          </p>
-          <p className="text-[#6B7178] text-[14px] font-medium">
-            답장이 오면 알림을 받을까요?
-          </p>
+      <div className="absolute bottom-[44px]">
+        <div className="mt-[171px] w-[343px] h-[64px] border border-[#E5E5EA] bg-[#F0F1EC] rounded-[12px] p-[10px] flex justify-between items-center">
+          <div>
+            <p className="text-[#6B7178] text-[14px] font-medium">
+              빠르면 하루, 최대 7일이 걸릴 수 있어요.
+            </p>
+            <p className="text-[#6B7178] text-[14px] font-medium">
+              답장이 오면 알림을 받을까요?
+            </p>
+          </div>
+          <Toggle />
         </div>
-        <Toggle />
-      </div>
 
-      {/* 홈으로 버튼 */}
-      <button
-        className="w-[343px] h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center mt-6 select-none cursor-pointer"
-        onClick={() => {
-          resetLetter();
-          router.push("/home");
-        }}
-      >
-        홈으로
-      </button>
+        {/* 홈으로 버튼 */}
+        <button
+          className="w-[343px] h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center mt-6 select-none cursor-pointer"
+          onClick={() => {
+            resetLetter();
+            router.push("/home");
+          }}
+        >
+          홈으로
+        </button>
+      </div>
     </div>
   );
 }

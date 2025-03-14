@@ -1,22 +1,31 @@
+import Image from "next/image";
 import React from "react";
 
 interface SvgIconProps {
-  fill?: string;
+  selectedIcon?: number;
 }
 
-const HomeIcon: React.FC<SvgIconProps> = ({ fill }) => {
+const HomeIcon: React.FC<SvgIconProps> = ({ selectedIcon }) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={25}
-      height={24}
-      viewBox="0 0 25 24"
-    >
-      <path
-        d="M20.9965 8.01002L14.4465 2.77002C13.1665 1.75002 11.1665 1.74002 9.89647 2.76002L3.34647 8.01002C2.40647 8.76002 1.83647 10.26 2.03647 11.44L3.29647 18.98C3.58647 20.67 5.15647 22 6.86647 22H17.4665C19.1565 22 20.7565 20.64 21.0465 18.97L22.3065 11.43C22.4865 10.26 21.9165 8.76002 20.9965 8.01002ZM12.9165 18C12.9165 18.41 12.5765 18.75 12.1665 18.75C11.7565 18.75 11.4165 18.41 11.4165 18V15C11.4165 14.59 11.7565 14.25 12.1665 14.25C12.5765 14.25 12.9165 14.59 12.9165 15V18Z"
-        fill={fill}
-      />
-    </svg>
+    <>
+      {/* 선택 됨 */}
+      {selectedIcon === 1 ? (
+        <Image
+          src="/images/icons/footer/home_pressed_icon.svg"
+          alt="footer home pressed"
+          width={24}
+          height={24}
+        />
+      ) : (
+        // 선택 안됨
+        <Image
+          src="/images/icons/footer/home_off_icon.svg"
+          alt="footer home off"
+          width={24}
+          height={24}
+        />
+      )}
+    </>
   );
 };
 
