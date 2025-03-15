@@ -73,7 +73,7 @@ export default function LetterSent() {
 
         {/* 홈으로 버튼 */}
         <button
-          className="w-[343px] h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center mt-6 select-none cursor-pointer"
+          className="w-[343px] h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center mt-[17px] select-none cursor-pointer"
           onClick={() => {
             resetLetter();
             router.push("/home");

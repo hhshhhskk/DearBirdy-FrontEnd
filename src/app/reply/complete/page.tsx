@@ -44,7 +44,7 @@ const LetterReplyCompletePage: React.FC = () => {
           </p>
         </div>
         {/* 애니메이션 */}
-        <div className="flex justify-center items-center w-full h-[310px] mt-[48px]">
+        <div className="flex justify-center items-center w-full mt-[117px]">
           {animationData ? (
             <Lottie
               animationData={animationData}

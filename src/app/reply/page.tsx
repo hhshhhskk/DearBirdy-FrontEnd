@@ -33,13 +33,16 @@ const ReplyPage: React.FC = () => {
   const [guideModal, setGuideModal] = useState(false);
   const { categoryName, letterStatusSeq } = useLetterInfoStore();
 
-  const handleChange = (value: string) => {
-    if (value.length <= 300) {
-      setCharCount(value);
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target.value.length <= 300) {
+      setCharCount(e.target.value);
       textAreaRef.current?.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
+      const target = e.target;
+      target.style.height = "auto"; // 초기화 후 다시 설정
+      target.style.height = `${Math.min(target.scrollHeight, 320)}px`; // 최대 높이 제한 (320px)
     }
   };
 
@@ -108,7 +111,7 @@ const ReplyPage: React.FC = () => {
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col mt-[13px]"
+          className="flex flex-col mt-[14px]"
         >
           {/* 제목 입력 필드 */}
           <div className="flex w-[375px] p-4 flex-col items-start border-b border-[#E5E5EA]">
@@ -117,7 +120,7 @@ const ReplyPage: React.FC = () => {
                 required: "편지 제목을 입력 해 주세요",
               })}
               placeholder="이 편지의 제목을 알려주세요"
-              className="text-[#292D32] placeholder-[#C7C7CC] text-[16px] font-medium leading-6 tracking-[-0.064px] 
+              className="h-6 text-[#292D32] caret-[#D6E173] placeholder-[#C7C7CC] text-[16px] font-medium leading-6 tracking-[-0.064px] 
               focus:outline-none"
             />
             {errors.title && (
@@ -126,7 +129,7 @@ const ReplyPage: React.FC = () => {
           </div>
 
           {/* 내용 필드 */}
-          <div className="flex w-[375px] min-h-[392px] p-4 flex-col">
+          <div className="flex w-[375px] p-4 flex-col">
             <textarea
               maxLength={300}
               {...register("letter", {
@@ -137,8 +140,8 @@ const ReplyPage: React.FC = () => {
                 register("letter").ref(e);
               }}
               placeholder="편지 내용을 입력해주세요"
-              className="text-[#292D32] placeholder-[#C7C7CC] text-[16px] font-medium leading-6 tracking-[-0.064px] min-h-[280px] focus:outline-none resize-none"
-              onChange={(e) => handleChange(e.target.value)}
+              className="text-[#292D32] placeholder-[#C7C7CC] text-[16px] font-medium leading-6 tracking-[-0.064px] min-h-[320px] caret-[#D6E173] focus:outline-none overflow-y-auto resize-none "
+              onChange={(e) => handleChange(e)}
             />
             {errors.letter && (
               <p className="text-sm text-red-500">{errors.letter.message}</p>

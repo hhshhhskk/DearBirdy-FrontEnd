@@ -29,11 +29,11 @@ export default function WriteLetter() {
     // ✅ 높이 자동 조정
     const target = e.target;
     target.style.height = "auto"; // 초기화 후 다시 설정
-    target.style.height = `${Math.min(target.scrollHeight, 200)}px`; // 최대 높이 제한 (200px)
+    target.style.height = `${Math.min(target.scrollHeight, 320)}px`; // 최대 높이 제한 (320px)
   };
 
   return (
-    <div className="relative flex flex-col w-full h-full gap-2 text-black items-around">
+    <div className="relative flex flex-col w-full h-full text-black items-around">
       {/* 편지 가이드 모달 컴포넌트 적용 */}
       <div className="relative flex items-center justify-center">
         <LetterGuideModal
@@ -80,19 +80,20 @@ export default function WriteLetter() {
             </button>
           </div>
         </div>
-
-        <input
-          ref={inputRef}
-          type="text"
-          className="w-full h-[24px] py-[20px] text-[#292D32] placeholder-[#C7C7CC] mt-4 focus:outline-none focus:border-b-[#C7C7CC] caret-[#D6E173]"
-          placeholder="제목을 입력해주세요"
-          value={title}
-          onChange={handleInputChange}
-        />
+        <div className="py-[16px] mt-[14px]">
+          <input
+            ref={inputRef}
+            type="text"
+            className="w-full h-[24px]text-[#292D32] placeholder-[#C7C7CC]  focus:outline-none focus:border-b-[#C7C7CC] caret-[#D6E173]"
+            placeholder="제목을 입력해주세요"
+            value={title}
+            onChange={handleInputChange}
+          />
+        </div>
         <div className="-mx-4 border-b border-[#E5E5EA] "></div>
         <textarea
           ref={textAreaRef}
-          className="w-full min-h-[392px] max-h-[200px] text-[#292D32] placeholder-[#C7C7CC]  mt-4 
+          className="w-full min-h-[320px] text-[#292D32] placeholder-[#C7C7CC]  mt-4 
              focus:outline-none focus:border-b-[#C7C7CC] caret-[#D6E173] overflow-y-auto resize-none"
           placeholder="편지를 작성해주세요"
           value={letter}
