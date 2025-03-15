@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
+import pwa from "next-pwa";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
   async rewrites() {
     return [
       {
@@ -9,6 +10,11 @@ const nextConfig: NextConfig = {
         destination: "https://dev.dearbirdy.xyz/api/v1/auth/kakao",
       },
     ];
+  },
+  pwa: {
+    dest: "public", // PWA 파일을 public 폴더에 배치
+    register: true,
+    skipWaiting: true,
   },
 };
 
