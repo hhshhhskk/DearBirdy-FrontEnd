@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
-import pwa from "next-pwa";
+
+const withPWA = require('next-pwa')({
+  dest: 'public',
+});
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -11,11 +14,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  pwa: {
-    dest: "public", // PWA 파일을 public 폴더에 배치
-    register: true,
-    skipWaiting: true,
-  },
 };
 
-export default nextConfig;
+export default withPWA(nextConfig);

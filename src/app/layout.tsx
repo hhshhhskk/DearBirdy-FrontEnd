@@ -14,6 +14,8 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: "DearBirdy",
   description: "편지로 연결되는 따뜻한 마음, 인생 선후배들의 만남",
+  manifest: "/manifest.json",
+  icons: [{ rel: "icon", url: "/logo_192.png", sizes: "192x192" }],
 };
 
 export default function RootLayout({
@@ -25,6 +27,8 @@ export default function RootLayout({
     <html lang="ko">
       <Head>
         <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/logo_192.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/logo_512.png" />
       </Head>
       <body
         className={`${pretendard.variable} font-pretendard w-full flex justify-center`}
