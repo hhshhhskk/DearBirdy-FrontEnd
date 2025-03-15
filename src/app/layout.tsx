@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import Providers from "./providers";
+import Head from "next/head";
 
 const pretendard = localFont({
   src: "../app/fonts/PretendardVariable.woff2",
@@ -22,6 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
       <body
         className={`${pretendard.variable} font-pretendard w-full flex justify-center`}
       >

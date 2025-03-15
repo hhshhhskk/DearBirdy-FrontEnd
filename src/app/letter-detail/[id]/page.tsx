@@ -212,7 +212,7 @@ const LetterDetailId: React.FC = () => {
           />
           <Image
             src={`/images/birds/${
-              birdNameMap[letter.replyLetter.sendUserBird] || "default"
+              birdNameMap[letter?.replyLetter?.sendUserBird] ?? "default"
             }_24.svg`}
             alt="프로필 새 24"
             width={24}
