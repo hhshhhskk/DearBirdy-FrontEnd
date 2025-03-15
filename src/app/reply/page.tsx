@@ -36,6 +36,10 @@ const ReplyPage: React.FC = () => {
   const handleChange = (value: string) => {
     if (value.length <= 300) {
       setCharCount(value);
+      textAreaRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
   };
 
