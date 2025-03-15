@@ -1,12 +1,13 @@
 "use client";
 
+import LetterProgress from "@/components/letter/LetterProgress";
 import ReplyGuide from "@/components/letter/ReplyGuide";
 import ReplyPreview from "@/components/letter/ReplyPreview";
 import { postReply } from "@/services/letterReply";
 import { useLetterInfoStore } from "@/store/letterInfoStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface FormValues {
@@ -15,24 +16,6 @@ interface FormValues {
 }
 
 const ReplyPage: React.FC = () => {
-  const PROGRESS_MESSAGES = [
-    {
-      limit: 0,
-      text: "",
-      color: "#C7C7CC",
-    },
-    {
-      limit: 30,
-      text: "편지는 30자 이상부터 보낼 수 있어요",
-      color: "#C7C7CC",
-    },
-    { limit: 80, text: "정성스런 편지를 써주면 좋겠어요", color: "#84A667" },
-    { limit: 200, text: "차근차근 편지를 잘 써주고 계세요", color: "#84A667" },
-    { limit: 250, text: "정성스런 편지를 잘 써주고 계세요", color: "#8DC3DB" },
-    { limit: 299, text: "충분한 편지를 모두 적어주셨네요", color: "#8DC3DB" },
-    { limit: 300, text: "편지는 300자 까지만 쓸 수 있어요", color: "#FF2A2C" },
-  ];
-
   const router = useRouter();
   const {
     register,
@@ -40,19 +23,15 @@ const ReplyPage: React.FC = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
+  // ✅ 스크롤을 따라가기 위한 ref 추가
+  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+
   const [charCount, setCharCount] = useState<string>("");
 
   const [previewModal, setPreviewModal] = useState(false);
 
   const [guideModal, setGuideModal] = useState(false);
   const { categoryName, letterStatusSeq } = useLetterInfoStore();
-
-  const letterLength = charCount.length;
-  const progressMessage =
-    PROGRESS_MESSAGES.find((msg) => letterLength <= msg.limit) ??
-    PROGRESS_MESSAGES[PROGRESS_MESSAGES.length - 1];
-
-  const progressPercent = Math.min((letterLength / 300) * 100, 100);
 
   const handleChange = (value: string) => {
     if (value.length <= 300) {
@@ -77,7 +56,7 @@ const ReplyPage: React.FC = () => {
     <div className="relative w-full min-h-screen bg-[#f9f8f3] flex flex-col px-4">
       {previewModal && <ReplyPreview setPreviewModal={setPreviewModal} />}
       {guideModal && <ReplyGuide setGuideModal={setGuideModal} />}
-      <header className="w-full h-[56px] flex justify-between items-center">
+      <header className="fixed top-0 min-w-[343px] h-[56px] flex justify-between items-center ">
         <Image
           src="/images/icons/arrow_left_icon.svg"
           alt="왼쪽 방향 아이콘"
@@ -107,7 +86,7 @@ const ReplyPage: React.FC = () => {
           </span>
         </div>
       </header>
-      <main className="flex flex-col items-center justify-center">
+      <main className="flex flex-col items-center justify-center mt-[64px]">
         <div className="flex items-center justify-start w-full mt-2.5">
           <p className="text-[#292D32] text-xl font-bold leading-7 tracking-[-0.08px]">
             {categoryName}에 대한 고민을 보내온 마음에
@@ -149,8 +128,12 @@ const ReplyPage: React.FC = () => {
               {...register("letter", {
                 required: "편지 내용을 입력해주세요",
               })}
+              ref={(e) => {
+                textAreaRef.current = e;
+                register("letter").ref(e);
+              }}
               placeholder="편지 내용을 입력해주세요"
-              className="text-[#292D32] placeholder-[#C7C7CC] text-[16px] font-medium leading-6 tracking-[-0.064px] min-h-[280px] focus:outline-none"
+              className="text-[#292D32] placeholder-[#C7C7CC] text-[16px] font-medium leading-6 tracking-[-0.064px] min-h-[280px] focus:outline-none resize-none"
               onChange={(e) => handleChange(e.target.value)}
             />
             {errors.letter && (
@@ -195,28 +178,9 @@ rounded-[10px] border border-[#84A667] bg-white shadow-[1px_1px_8px_0px_#D2D4CB]
               </span>
             </div>
           </div>
-          {/* 진행 메시지 프로그래스 바 */}
-          <div className="flex items-center justify-between mt-2">
-            <span className="text-sm text-[#6B7178]">
-              {letterLength > 0 ? progressMessage.text : ""}
-            </span>
-            <div
-              className={`h-[22px] text-center text-sm bg-white rounded-md transition-all duration-200 ${
-                charCount.length >= 100 ? "w-[79px]" : "w-[64px]"
-              }`}
-              style={{ color: progressMessage.color }}
-            >
-              {charCount.length}/300자
-            </div>
-          </div>
-          <div className="w-full h-[5px] bg-[#E5E5EA] mt-1">
-            <div
-              className="h-[5px]"
-              style={{
-                width: `${progressPercent}%`,
-                backgroundColor: progressMessage.color,
-              }}
-            ></div>
+          {/* 프로그레스바 컴포넌트 적용 */}
+          <div className="px-4">
+            <LetterProgress letterLength={charCount.trim().length} />
           </div>
         </form>
       </main>

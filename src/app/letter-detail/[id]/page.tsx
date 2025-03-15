@@ -150,7 +150,7 @@ const LetterDetailId: React.FC = () => {
       {showModal && (
         <>
           <div className="absolute inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
-          <div className="fixed bottom-0 left-0 z-20 flex w-[375px] p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#F9F8F3]">
+          <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 tr z-20 flex w-[376px] p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#F9F8F3]">
             <div
               className="flex justify-end w-full"
               onClick={() => setModal(false)}
@@ -543,7 +543,7 @@ const LetterDetailId: React.FC = () => {
         </main>
       ) : (
         // 답장 기다리고 있을때 배너
-        <div className="w-[342px] p-[14px] flex flex-col items-center gap-[8px] border border-[#4CA7D0] bg-[#F0FDFF] rounded-[14px]">
+        <div className="w-[342px] p-[14px] flex flex-col items-center gap-[8px] border border-[#4CA7D0] bg-[#F0FDFF] rounded-[14px] mt-[64px]">
           {/* <p className="text-[#6B7178] text-center text-[14px] font-bold leading-[20px] tracking-[-0.056px]">
             답장 시간이 D일 hh시간 남았어요
           </p>
@@ -606,8 +606,8 @@ const LetterDetailId: React.FC = () => {
         </div>
       </main>
       {!letter.sendLetter ? (
-        <>
-          <div className="flex items-center justify-center mt-16 cursor-pointer">
+        <div className="absolute bottom-[44px] w-[343px]">
+          <div className="flex items-center justify-center cursor-pointer">
             <p
               className="text-[#84A667] text-[14px] font-medium leading-[20px] tracking-[-0.056px]"
               onClick={throwClicked}
@@ -616,7 +616,7 @@ const LetterDetailId: React.FC = () => {
             </p>
           </div>
           <div
-            className="cursor-pointer flex w-full h-[50px] justify-center items-center  gap-1 align-stretch rounded-lg bg-[#292D32]"
+            className="cursor-pointer flex w-full h-[50px] justify-center items-center  gap-1 align-stretch rounded-lg bg-[#292D32] mt-2"
             onClick={() => {
               router.push("/reply");
               setLetterStatusSeq(letter.letterStatusSeq);
@@ -637,7 +637,7 @@ const LetterDetailId: React.FC = () => {
               답장 쓰기
             </span>
           </div>
-        </>
+        </div>
       ) : (
         <div className="h-4"></div>
       )}
