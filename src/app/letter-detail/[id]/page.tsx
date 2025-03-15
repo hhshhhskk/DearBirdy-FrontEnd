@@ -48,7 +48,7 @@ const LetterDetailId: React.FC = () => {
     useLetterInfoStore();
 
   // 새 이름을 한글 → 영어로 변환
-  const [sendUserBirdKey, setSendUserBirdKey] = useState<string>("default");
+  // const [sendUserBirdKey, setSendUserBirdKey] = useState<string>("default");
   const [replyUserBirdKey, setReplyUserBirdKey] = useState<string>("default");
   const [replySendUserBirdKey, setReplySendUserBirdKey] =
     useState<string>("default");
@@ -70,11 +70,11 @@ const LetterDetailId: React.FC = () => {
         if (id) {
           const data = await getLetterDetail(id);
           setLetter(data);
-          if (letter?.sendLetter?.sendUserBird) {
-            setSendUserBirdKey(
-              birdNameMap[letter.sendLetter.sendUserBird] || "default"
-            );
-          }
+          // if (letter?.sendLetter?.sendUserBird) {
+          //   setSendUserBirdKey(
+          //     birdNameMap[letter.sendLetter.sendUserBird] || "default"
+          //   );
+          // }
           if (letter?.replyLetter?.replyUserBird) {
             setReplyUserBirdKey(
               birdNameMap[letter.replyLetter.replyUserBird] || "default"
@@ -100,14 +100,16 @@ const LetterDetailId: React.FC = () => {
     fetchLetterDetail();
   }, [id, bookMark]);
 
+  console.log(letter);
+
   // 새 이름을 한글 → 영어로 변환
 
   useEffect(() => {
-    if (letter?.sendLetter?.sendUserBird) {
-      setSendUserBirdKey(
-        birdNameMap[letter.sendLetter.sendUserBird] || "default"
-      );
-    }
+    // if (letter?.sendLetter?.sendUserBird) {
+    //   setSendUserBirdKey(
+    //     birdNameMap[letter.sendLetter.sendUserBird] || "default"
+    //   );
+    // }
     if (letter?.replyLetter?.replyUserBird) {
       setReplyUserBirdKey(
         birdNameMap[letter.replyLetter.replyUserBird] || "default"
@@ -249,7 +251,7 @@ const LetterDetailId: React.FC = () => {
       )}
 
       <div className="min-h-screen bg-[#f9f8f3] flex flex-col px-4 gap-2">
-        <header className="relative w-full h-[56px] flex items-center">
+        <header className="fixed top-0 min-w-[343px] h-[56px] flex items-center bg-[#f9f8f3]">
           <Image
             src="/images/icons/arrow_left_icon.svg"
             alt="왼쪽 방향 아이콘"
@@ -259,7 +261,7 @@ const LetterDetailId: React.FC = () => {
             className="cursor-pointer"
           />
           <Image
-            src={`/images/birds/${sendUserBirdKey}_24.svg`}
+            src={`/images/birds/${replySendUserBirdKey}_24.svg`}
             alt="프로필 새 24"
             width={24}
             height={24}
@@ -285,7 +287,7 @@ const LetterDetailId: React.FC = () => {
         </header>
         {letter.replyLetter ? (
           // 받은 편지
-          <main className="flex flex-col items-center justify-center">
+          <main className="flex flex-col items-center justify-center mt-[64px]">
             <div className="w-[343px] p-[16px] pt-[16px] pb-[20px] flex flex-col items-center gap-[24px] border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
               <div className="flex flex-col w-full gap-4">
                 <div className="flex justify-start gap-2">
@@ -323,12 +325,6 @@ const LetterDetailId: React.FC = () => {
                   {replyDate}
                 </p>
                 <div className="flex items-center justify-center gap-2">
-                  <Image
-                    src={`/images/birds/${sendUserBirdKey}_24.svg`}
-                    alt="프로필 새 24"
-                    width={24}
-                    height={24}
-                  />
                   <span className="text-right text-[#292D32] font-sandoll-baikzongyulpil text-[18px] leading-[21.6px] font-bold iceJaram-Rg">
                     from. {letter.replyLetter.sendUser}
                   </span>
@@ -437,12 +433,6 @@ const LetterDetailId: React.FC = () => {
                   {sendDate}
                 </p>
                 <div className="flex items-end justify-center gap-2 mt-2">
-                  <Image
-                    src={`/images/birds/${sendUserBirdKey}_24.svg`}
-                    alt="프로필 새 24"
-                    width={24}
-                    height={24}
-                  />
                   <span className="text-right text-[#292D32] font-sandoll-baikzongyulpil text-[18px] leading-[21.6px] font-bold iceJaram-Rg">
                     from. {letter.sendLetter.sendUser}
                   </span>
@@ -468,7 +458,7 @@ const LetterDetailId: React.FC = () => {
       {showThrowAfterModal && (
         <ThrowAfterModal setShowThrowAfterModal={setShowThrowAfterModal} />
       )}
-      <header className="relative w-full h-[56px] flex items-center">
+      <header className="fixed top-0 min-w-[343px] h-[56px] flex items-center bg-[#f9f8f3]">
         <Image
           src="/images/icons/arrow_left_icon.svg"
           alt="왼쪽 방향 아이콘"
@@ -502,7 +492,7 @@ const LetterDetailId: React.FC = () => {
 
       {letter.sendLetter ? (
         // 보낸 편지
-        <main className="flex flex-col items-center justify-center">
+        <main className="flex flex-col items-center justify-center mt-[64px]">
           <div className=" pt-[16px] px-4 pb-[20px] flex flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
             <div className="flex flex-col w-full">
               <div className="flex justify-start gap-2">
@@ -518,7 +508,7 @@ const LetterDetailId: React.FC = () => {
               </div>
               <div className="flex items-end justify-start gap-2 mt-4">
                 <Image
-                  src={`/images/birds/${sendReplyUserBirdKey}_50.svg`}
+                  src={`/images/birds/${replySendUserBirdKey}_50.svg`}
                   alt="프로필 새 50"
                   width={50}
                   height={50}

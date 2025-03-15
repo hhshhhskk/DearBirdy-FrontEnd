@@ -27,7 +27,7 @@ const HomeMainYouth: React.FC<IProps> = ({ userData }) => {
 
   return (
     <>
-      <main className="flex flex-col min-h-screen px-4">
+      <main className="flex flex-col min-h-screen px-4 mt-[64px]">
         <div className="flex flex-col flex-1 gap-4">
           {/* ✅ 배너 클릭 시 모달 열기 */}
           <button onClick={() => setIsGuideOpen(true)}>

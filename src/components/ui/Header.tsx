@@ -9,7 +9,7 @@ interface IProps {
 
 const Header: React.FC<IProps> = ({ userData }) => {
   return (
-    <header className="flex cursor-pointer select-none items-center justify-center w-full h-[56px] px-4 mb-2">
+    <header className="fixed top-0 bg-[#f9f8f7] flex select-none items-center justify-center min-w-[375px] h-[56px] px-4 mb-2">
       <div className="container flex items-center justify-between">
         <Image
           src="/images/logo/logo_black_M.svg"

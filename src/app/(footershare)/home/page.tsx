@@ -53,7 +53,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="items-center justify-center">
+    <div className="">
       <Header userData={userData} />
 
       {userData.roleName === "MENTOR" ? (
