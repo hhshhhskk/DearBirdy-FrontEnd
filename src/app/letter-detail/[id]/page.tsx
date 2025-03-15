@@ -98,30 +98,9 @@ const LetterDetailId: React.FC = () => {
       }
     };
     fetchLetterDetail();
-  }, [id, bookMark]);
+  }, [id, bookMark, letter]);
 
   console.log(letter);
-
-  // 새 이름을 한글 → 영어로 변환
-
-  useEffect(() => {
-    // if (letter?.sendLetter?.sendUserBird) {
-    //   setSendUserBirdKey(
-    //     birdNameMap[letter.sendLetter.sendUserBird] || "default"
-    //   );
-    // }
-    if (letter?.replyLetter?.replyUserBird) {
-      setReplyUserBirdKey(
-        birdNameMap[letter.replyLetter.replyUserBird] || "default"
-      );
-    }
-    if (letter?.replyLetter?.sendUserBird) {
-      setReplySendUserBirdKey(
-        birdNameMap[letter.replyLetter.sendUserBird] || "default"
-      );
-    }
-    // letter가 변경될 때만 실행
-  }, [letter]);
 
   // 날짜 형식
   const formatDate = (dateString: string): string => {
@@ -316,7 +295,9 @@ const LetterDetailId: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <p>반갑습니다. {letter.replyLetter.letterTitle}</p>
+              <p className="w-full mt-6 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
+                {letter.replyLetter.letterTitle}
+              </p>
               <p className="w-full h-[240px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
                 {letter.replyLetter.letter}
               </p>
