@@ -17,10 +17,10 @@ const NextButton: React.FC<NextButtonProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`cursor-pointer rounded-xl text-white text-base leading-6 tracking-tight font-medium w-[342px] h-[50px] ${
+      className={`cursor-pointer rounded-xl text-base leading-6 tracking-tight font-medium w-[342px] h-[50px] ${
         disabled
           ? "bg-[#EBEBEE] text-[#C7C7CC] cursor-not-allowed"
-          : "bg-[#292d32]"
+          : "bg-[#292d32] text-white"
       }`}
     >
       {text}

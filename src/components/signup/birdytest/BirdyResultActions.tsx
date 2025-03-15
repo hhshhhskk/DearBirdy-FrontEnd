@@ -53,7 +53,7 @@ const BirdyResultActions = ({ birdData }: BirdyResultActionsProps) => {
   };
 
   return (
-    <div className="absolute bottom-10 flex justify-center">
+    <div className="absolute bottom-[44px] flex justify-center">
       <NextButton
         text="환영해, 나의 버디!"
         onClick={handleNext}

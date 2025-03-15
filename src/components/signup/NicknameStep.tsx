@@ -65,7 +65,8 @@ const NicknameStep = () => {
       setIsAvailable(available);
       setErrorType(available ? null : "fail");
       setLoading(false);
-    }, 1000); // 1초 후 API 호출
+      console.log("닉넴서버호출");
+    }, 100); // 0.1초 후 API 호출
 
     return () => clearTimeout(timer);
   }, [debouncedNickname]);

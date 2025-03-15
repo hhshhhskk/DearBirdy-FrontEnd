@@ -382,7 +382,7 @@ const LetterDetailId: React.FC = () => {
           </main>
         ) : (
           // 답장 기다리고 있을때 배너
-          <div className="w-full p-[14px] flex flex-col items-center gap-[8px] border border-[#4CA7D0] bg-[#F0FDFF] rounded-[14px]">
+          <div className="w-full p-[14px] flex flex-col items-center gap-[8px] border border-[#4CA7D0] bg-[#F0FDFF] rounded-[14px] mt-[64px]">
             <p className="text-[#6B7178] text-center text-[14px] font-bold leading-[20px] tracking-[-0.056px]">
               따뜻한 말이 담긴 답장을 작성하고 있어요
             </p>

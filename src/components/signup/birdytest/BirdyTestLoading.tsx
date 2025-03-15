@@ -74,7 +74,7 @@ const BirdyTestLoading = () => {
             />
           </div>
 
-          <p className="text-xl font-bold text-center text-[#292D32]">
+          <p className="text-xl font-bold text-center text-[#292D32] mt-[48px]">
             알을 눌러서 버디를 깨워주세요!
           </p>
         </>
