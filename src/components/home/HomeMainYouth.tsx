@@ -8,7 +8,7 @@ import Banner from "./Banner";
 import { IUserData } from "@/app/(footershare)/home/page";
 import { useRouter } from "next/navigation";
 import { birdNameMap } from "@/constants/birdNameMap"; // ✅ birdName 변환 맵 추가
-import LetterGuideModal from "@/components/letter/LetterGuideModal"; // ✅ 모달 컴포넌트 추가
+import HomeLetterGuideModal from "../letter/HomeLetterGuideModal";
 
 interface IProps {
   userData?: IUserData; // ✅ 옵셔널 값으로 변경 (불러오지 못한 경우 대비)
@@ -27,8 +27,8 @@ const HomeMainYouth: React.FC<IProps> = ({ userData }) => {
 
   return (
     <>
-      <main className="flex flex-col h-screen px-4">
-        <div className="flex flex-col flex-1 gap-4 mt-[64px]">
+      <main className="flex flex-col px-4">
+        <div className="flex flex-col flex-1 gap-4 mt-2">
           {/* ✅ 배너 클릭 시 모달 열기 */}
           <button onClick={() => setIsGuideOpen(true)}>
             <Banner />
@@ -68,9 +68,10 @@ const HomeMainYouth: React.FC<IProps> = ({ userData }) => {
 
       {/* ✅ LetterGuideModal 추가 */}
       {isGuideOpen && (
-        <LetterGuideModal
+        <HomeLetterGuideModal
           isOpen={isGuideOpen}
           onClose={() => setIsGuideOpen(false)}
+          roleName={userData?.roleName}
           type="letter"
         />
       )}

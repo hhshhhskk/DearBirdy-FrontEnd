@@ -6,10 +6,10 @@ import { birdNameMap } from "@/constants/birdNameMap"; // ✅ birdName 변환 �
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import LetterGuideModalSenior from "../letter/LetterGuideModalSenior";
 import Banner from "./Banner";
 import SendMessage from "./SendMessage";
 import SendMessageLimit from "./SendMessageLimit";
+import HomeLetterGuideModal from "../letter/HomeLetterGuideModal";
 
 interface IProps {
   userData?: IUserData; // ✅ 옵셔널 값으로 변경 (불러오지 못한 경우 대비)
@@ -30,8 +30,8 @@ const HomeMainSenior: React.FC<IProps> = ({ userData }) => {
 
   return (
     <>
-      <main className="flex flex-col h-screen px-4">
-        <div className="flex flex-col flex-1 gap-4 mt-[64px]">
+      <main className="flex flex-col px-4">
+        <div className="flex flex-col flex-1 gap-4 mt-2">
           <button onClick={() => setIsGuideOpen(true)}>
             <Banner />
           </button>
@@ -69,10 +69,11 @@ const HomeMainSenior: React.FC<IProps> = ({ userData }) => {
       </main>
       {/* ✅ LetterGuideModal 추가 */}
       {isGuideOpen && (
-        <LetterGuideModalSenior
+        <HomeLetterGuideModal
           isOpen={isGuideOpen}
           onClose={() => setIsGuideOpen(false)}
-          type="letter"
+          roleName={userData?.roleName}
+          type="reply"
         />
       )}
     </>

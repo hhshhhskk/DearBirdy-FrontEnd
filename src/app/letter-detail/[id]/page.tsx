@@ -47,14 +47,6 @@ const LetterDetailId: React.FC = () => {
   const { setBirdName, setNickname, setCategoryName, setLetterStatusSeq } =
     useLetterInfoStore();
 
-  // 새 이름을 한글 → 영어로 변환
-  // const [sendUserBirdKey, setSendUserBirdKey] = useState<string>("default");
-  const [replyUserBirdKey, setReplyUserBirdKey] = useState<string>("default");
-  const [replySendUserBirdKey, setReplySendUserBirdKey] =
-    useState<string>("default");
-  const [sendReplyUserBirdKey, setSendReplyUserBirdKey] =
-    useState<string>("default");
-
   useEffect(() => {
     const storedData = sessionStorage.getItem("userInfo");
 
@@ -70,26 +62,6 @@ const LetterDetailId: React.FC = () => {
         if (id) {
           const data = await getLetterDetail(id);
           setLetter(data);
-          // if (letter?.sendLetter?.sendUserBird) {
-          //   setSendUserBirdKey(
-          //     birdNameMap[letter.sendLetter.sendUserBird] || "default"
-          //   );
-          // }
-          if (letter?.replyLetter?.replyUserBird) {
-            setReplyUserBirdKey(
-              birdNameMap[letter.replyLetter.replyUserBird] || "default"
-            );
-          }
-          if (letter?.replyLetter?.sendUserBird) {
-            setReplySendUserBirdKey(
-              birdNameMap[letter.replyLetter.sendUserBird] || "default"
-            );
-          }
-          if (letter?.sendLetter?.replyUserBird) {
-            setSendReplyUserBirdKey(
-              birdNameMap[letter.sendLetter.replyUserBird] || "default"
-            );
-          }
         } else {
           console.error("ID가 없습니다.");
         }
@@ -98,7 +70,7 @@ const LetterDetailId: React.FC = () => {
       }
     };
     fetchLetterDetail();
-  }, [id, bookMark, letter]);
+  }, [id, bookMark]);
 
   console.log(letter);
 
@@ -140,7 +112,6 @@ const LetterDetailId: React.FC = () => {
   const throwClicked = () => {
     setShowThrowModal(true);
   };
-
   if (!letter) return <div>Loading</div>;
 
   // 청년 버전
@@ -240,7 +211,9 @@ const LetterDetailId: React.FC = () => {
             className="cursor-pointer"
           />
           <Image
-            src={`/images/birds/${replySendUserBirdKey}_24.svg`}
+            src={`/images/birds/${
+              birdNameMap[letter.replyLetter.sendUserBird] || "default"
+            }_24.svg`}
             alt="프로필 새 24"
             width={24}
             height={24}
@@ -282,7 +255,9 @@ const LetterDetailId: React.FC = () => {
                 </div>
                 <div className="flex items-end justify-start gap-2">
                   <Image
-                    src={`/images/birds/${replyUserBirdKey}_50.svg`}
+                    src={`/images/birds/${
+                      birdNameMap[letter.replyLetter.replyUserBird] || "default"
+                    }_50.svg`}
                     alt="프로필 새 50"
                     width={50}
                     height={50}
@@ -390,7 +365,9 @@ const LetterDetailId: React.FC = () => {
                 </div>
                 <div className="flex items-end justify-start gap-2 mt-4">
                   <Image
-                    src={`/images/birds/${sendReplyUserBirdKey}_50.svg`}
+                    src={`/images/birds/${
+                      birdNameMap[letter.sendLetter.replyUserBird] || "default"
+                    }_50.svg`}
                     alt="프로필 새 50"
                     width={50}
                     height={50}
@@ -448,7 +425,9 @@ const LetterDetailId: React.FC = () => {
           onClick={() => router.back()}
         />
         <Image
-          src={`/images/birds/${replySendUserBirdKey}_24.svg`}
+          src={`/images/birds/${
+            birdNameMap[letter.replyLetter.sendUserBird] || "default"
+          }_24.svg`}
           alt="프로필 새 24"
           width={24}
           height={24}
@@ -489,7 +468,9 @@ const LetterDetailId: React.FC = () => {
               </div>
               <div className="flex items-end justify-start gap-2 mt-4">
                 <Image
-                  src={`/images/birds/${replySendUserBirdKey}_50.svg`}
+                  src={`/images/birds/${
+                    birdNameMap[letter.replyLetter.sendUserBird] || "default"
+                  }_50.svg`}
                   alt="프로필 새 50"
                   width={50}
                   height={50}
@@ -574,7 +555,9 @@ const LetterDetailId: React.FC = () => {
             </div>
             <div className="flex items-end justify-start gap-2 mt-4">
               <Image
-                src={`/images/birds/${replyUserBirdKey}_50.svg`}
+                src={`/images/birds/${
+                  birdNameMap[letter.replyLetter.replyUserBird] || "default"
+                }_50.svg`}
                 alt="프로필 새 50"
                 width={50}
                 height={50}
