@@ -80,7 +80,7 @@ const LetterDetailId: React.FC = () => {
 
     const month = date.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
     const day = date.getDate();
-    const hours = date.getHours();
+    const hours = date.getHours() + 9;
 
     // 시간에 따라 아침, 점심, 저녁 구분
     let timeOfDay = "";

@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
       setSelectedIcon(currentItem.id);
     }
 
-    const storedData = sessionStorage.getItem("userData");
+    const storedData = sessionStorage.getItem("userInfo");
 
     if (storedData) {
       const parsedData = JSON.parse(storedData);

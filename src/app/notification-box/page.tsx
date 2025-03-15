@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IUserData } from "../(footershare)/home/page";
 import { getNotificationList } from "@/services/homeGetApi";
+import SeniorNotificationPage from "@/components/notification/SeniorNotificationPage";
 
 export interface INotification {
   birdName: string;
@@ -24,7 +25,7 @@ const NotificationBox: React.FC = () => {
   >([]);
 
   useEffect(() => {
-    const storedData = sessionStorage.getItem("userData");
+    const storedData = sessionStorage.getItem("userInfo");
 
     if (storedData) {
       const parsedData = JSON.parse(storedData);
@@ -50,8 +51,8 @@ const NotificationBox: React.FC = () => {
   }
 
   return (
-    <div className="h-full w-full bg-[#f9f8f3] flex flex-col mx-auto px-4">
-      <header className="relative cursor-pointer select-none w-full h-[56px] mt-[59px] flex justify-center items-center">
+    <div className="h-screen w-full bg-[#f9f8f3] flex flex-col">
+      <header className="relative cursor-pointer select-none w-full h-[56px] flex justify-center items-center">
         <Image
           src="/images/icons/arrow_left_icon.svg"
           alt="왼쪽 방향 아이콘"
@@ -64,13 +65,16 @@ const NotificationBox: React.FC = () => {
           알림함
         </span>
       </header>
-      <main className="flex flex-col items-center justify-center">
+      <main className="flex flex-col items-center justify-center w-full ">
+        {/* 알림있음 */}
         {notifications && notifications.length > 0 ? (
-          <YouthNotificationPage
-            userData={userData}
-            notifications={notifications}
-          />
+          userData.roleName === "MENTEE" ? (
+            <YouthNotificationPage notifications={notifications} />
+          ) : (
+            <SeniorNotificationPage notifications={notifications} />
+          )
         ) : (
+          // 알림없음
           <div className="flex flex-col items-center justify-center w-screen mt-2">
             <Image
               src="/images/icons/notification_bell_icon.svg"
