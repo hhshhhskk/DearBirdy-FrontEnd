@@ -173,7 +173,7 @@ const YouthLetterStorage: React.FC = () => {
                       <div className="text-[#292D32] text-[14px] font-normal leading-[22px]">
                         {letter.nickname}
                       </div>
-                      <div className="text-[#292D32] text-[16px] font-bold leading-[24px] overflow-hidden text-ellipsis whitespace-nowrap">
+                      <div className="text-[#292D32] text-[16px] font-bold leading-[24px] overflow-hidden text-ellipsis whitespace-nowrap mb-[15px]">
                         {letter.title}
                       </div>
                       {!letter.read && letter.nickname !== "익명새" && (

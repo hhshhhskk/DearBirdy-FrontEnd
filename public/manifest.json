@@ -3,8 +3,8 @@
   "short_name": "DearBirdy",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#F9F8F3",
+  "theme_color": "#F9F8F3",
   "icons": [
     {
       "src": "/logo_192.png",
